@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Course Mechanics + Introduction</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Kenji Sato" />
+    <script src="https://use.fontawesome.com/b5f301ecca.js"></script>
+    <link rel="stylesheet" href="../asset/remark-css/style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Course Mechanics + Introduction
+## Macroeconomics (2018Q3)
+### Kenji Sato
+### Day 01
+
+---
+
+
+
+
+
+class: center, middle
+ # Mechanics 
+
+
+
+---
+
+## Who am I?
+
+- Name: 
+  - **Kenji Sato**
+  - PLEASE DO NOT address me as "Professor"
+  - "Kenji" or "Sato-_san_" are preferable. "Sato-_sensei_" 
+    is acceptable.
+- Fields of Interest: 
+  - Macroeconomic Dynamics
+  - Economics of Innovation
+  - Comparative Statics/Dynamics
+  
+---
+
+## Contact
+
+- Email: mail@kenjisato.jp
+- Office Hours: 
+  - Upon request (My office is in Osaka Prefecture University in Osaka...)
+  - Ask me after the class. (Or on Skype/Slack if you prefer)
+
+Except for private ones, ask questions in class 
+or on Slack chatroom (discussed later).
+
+---
+
+## Course Schedule
+
+- Schedule
+    - Tuesdays 2nd period
+    - Fridays 1st period
+- Exam
+    - Midterm exam on May 1, 2nd period
+    - Final on June 6, 2nd period
+
+---
+
+## Assessment
+
+| Item                          | Weight    | Note                      |
+|:------------------------------|:----------|:--------------------------|
+| Attendance*                   | P/F       | fail if # of absense &gt; 3  |
+| Midterm exam                  | 40%       | Closed-book, Slow, MRW    |
+| Final exam                    | 60%       | Closed-book, Ramsey &amp; OLG |
+| Homework/Active participation | Bonus     | Max 40%                   | 
+
+
+* Those who attended Q1 Class are granted exemptions.
+
+---
+
+## Textbooks
+
+We will study fundamental models of economic growth, using
+
+- David Romer, _Advanced Macroeconomics_, 4th edition. McGraw-Hill. 2012. (5th would also be okay)
+
+As a companion I'd recommend
+
+- Charles Jones and Dietrich Vollrath, _Introduction to Economic Growth_, 3rd edition (2013, Norton) 
+
+Other related materials will be announced in class. 
+
+---
+
+## Support
+
+You can ask me on Slack. You will submit homework assignments through GitHub. So...
+
+Let's setup technical stuff!
+
+
+---
+
+## GitHub &lt;i class="fa fa-github"&gt;&lt;/i&gt;
+
+GitHub is a code-sharing platform designed for Git version control
+system. 
+
+We will use GitHub for assignment distribution and submission (except for purely mathematical ones). 
+
+
+Create an account if you don't have one. Visit https://github.com/
+
+
+Choose an account name very seriously.
+
+---
+
+## Slack &lt;i class="fa fa-slack"&gt;&lt;/i&gt;
+
+We use Slack for random communications. 
+
+- Updates and corrections to course materials will be 
+  announed.
+- You can ask anything non-private there. 
+- You can answer the questions. (You will get active participation points.)
+
+
+Join our Slack team here: [kjst.jp/slack](kjst.jp/slack)   
+Use the same account id as GitHub! 
+
+We will invite you as a member of #ma18q1 channel after you 
+entered rokkoecon team. 
+
+---
+
+## First Homework Assignment!!!! (optional)
+
+See list in kjst.jp/ma18q3hw
+
+&gt; Hand in by Pull Request.  
+&gt; Read the handout for details!
+
+The installation process may require considerable efforts!  
+Don't put it off; **START TODAY!**
+
+If you have any problems start discussions on Slack.  
+https://rokkoecon-slack-invite.herokuapp.com/ 
+
+
+---
+
+## Caveat
+
+After making a Pull Request, you'll see something like this. 
+Don't surrender to the tempatation to click on this button!
+
+I merge, not you. Thanks.
+
+
+![](images/dont-touch.png)
+
+---
+
+## Resources on R
+
+You might want to learn about R. I'd recommend
+
+- [_R for Data Science_ by G. Grolemund and H. Wickham](http://r4ds.had.co.nz)
+
+For advanced users: 
+
+- [_Advanced R_ by H. Wickham](http://adv-r.had.co.nz)
+
+For whom can read Chinese (I wish I could read this):
+
+- [_R语言忍者秘笈_ by 谢益辉, 肖楠, 坑主三 and 坑主四](https://bookdown.org/yihui/r-ninja/)
+
+
+---
+
+class: center, middle
+ # Macroeconomics 
+
+
+
+---
+
+## Growth models as a basis for many macro models
+
+Macroeconomics is a study of huge field of study that encompasses such diverse subfields as
+
+growth theory, monetary economics, public finance, labor economics, international finance, etc. ...
+
+In this course we study Growth Models. 
+
+---
+
+## Why growth models
+
+Acemoglu (2009) _Introduction to modern economic growth_, p. xv:
+
+.small[
+
+&gt; While there is disagreement among macroeconomists about how to approach short-run macroeconomic phenomena and what the boundaries of macroeconomics should be, **there is broad agreement about the workhorse models of dynamic macroeconomic analysis. These include the Solow growth model, the neoclassical growth model, the overlapping generations model, and models of technological change and technology adoption**. Since these are all models of economic growth, a thorough treatment of modem economic growth can also provide (and perhaps should provide) an introduction to this core material of modem macroeconomics. [emphasis added]
+
+]
+
+---
+
+## Models we study 
+
+We study the following three models
+
+- Solow growth model
+    - Almost everything is exogenous but very good at explaining long-run behavior
+- Neoclassical growth model
+    - Ramsey model
+    - Involves dynamic optimization
+- Overlapping generations model
+    - Suitable for addressing conflict of interest between generations
+
+---
+
+## Techniques you learn
+
+We will be using mathematics and programing.
+
+- Mathematics
+    - Basics of differential equation.
+    - Dynamic optimization in continuous time.
+- Programing
+    - R programing language
+    - Data handling and visualization.
+    - Reporting with R Markdown.
+
+---
+
+## What you don't learn (among many)
+
+While you will learn some data-related techniques, 
+in this course you will **not** learn
+
+- Data preprocessing
+    - i.e., Data retrieval and cleaning
+    - We will be using already cleansed data only.
+- Statistical analysis
+    - i.e., Econometrics
+    - The validity and limitation of the regression lines you 
+      draw in this course must be investigated after serious study 
+      of econometrics.
+
+---
+
+## Caveat
+
+I will show you all the code I use to draw graphs.  
+Do rerun the code yourself because you can learn how to code only by doing.
+
+To be able to run the below code successfully, you need to setup your environment properly. (This is what hw01 and hw02 are about.)
+
+
+
+```r
+library(tidyverse)
+pwt90 &lt;- haven::read_dta("~/Data/pwt90.dta")
+```
+
+---
+
+## Economic phenomena we study
+
+Here is the graph showing economic growth in the USA. 
+
+
+```r
+usa &lt;- pwt90 %&gt;% filter(country == "United States")
+ggplot(usa) + geom_line(aes(year, rgdpo))
+```
+
+&lt;img src="day01_files/figure-html/unnamed-chunk-2-1.png" width="350" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Growth in per-capita Real GDP
+
+Per-person GDP might be more important.
+
+
+```r
+usa_per_capita &lt;- usa %&gt;% transmute(year, rgdp_pc = rgdpo / pop)
+(p &lt;- ggplot(usa_per_capita) + geom_line(aes(year, rgdp_pc)))
+```
+
+&lt;img src="day01_files/figure-html/unnamed-chunk-3-1.png" width="350" style="display: block; margin: auto;" /&gt;
+
+---
+
+## On log scale
+
+Plot log(Per-person GDP) to see the trend.
+
+
+```r
+p + scale_y_log10()
+```
+
+&lt;img src="day01_files/figure-html/unnamed-chunk-4-1.png" width="350" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Fit 
+
+`$$\ln \text{GDP} = \text{const.} + g \times \text{Year}$$`
+
+
+```r
+lm(log(rgdp_pc) ~ year, data = usa_per_capita)
+```
+
+```
+## 
+## Call:
+## lm(formula = log(rgdp_pc) ~ year, data = usa_per_capita)
+## 
+## Coefficients:
+## (Intercept)         year  
+##     -31.320        0.021
+```
+
+This means that (approximately)
+`$$g = 2.1 \%$$`
+
+---
+
+## Constant trend in growth
+
+
+```r
+gdp0 &lt;- usa_per_capita$rgdp_pc[1]
+p + geom_line(aes(x = year, gdp0 * exp(0.021 * (year - min(year)))))
+```
+
+&lt;img src="day01_files/figure-html/unnamed-chunk-6-1.png" width="350" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Question
+
+There seems a constant trend in growth.
+  - In the US, the annual per-capita real GDP growth rate is 2.1% on average
+
+What is the engine of economic growth?
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": false,
+"highlightLines": true,
+"highlightStyle": "github"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
