@@ -1,0 +1,401 @@
+---
+title: "Growth Rate"
+author: "Kenji Sato"
+date: 'Day 2'
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    css: 
+      - "../asset/remark-css/style.css"
+    lib_dir: libs
+    nature:
+      countIncrementalSlides: no
+      highlightLines: yes
+      highlightStyle: github
+subtitle: Macroeconomics (2018Q3)
+header-includes: <script src="https://use.fontawesome.com/b5f301ecca.js"></script>
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = 'center')
+source("../R/utils.R")
+library(tidyverse)
+library(cowplot)
+```
+
+
+## Growth Rate
+
+```{r, include=FALSE}
+Y = c(15591, 15978, 16274, 16705)
+```
+
+| Year  | GDP    | Symbol  |
+|:-----:|:------:|:-------:|
+| 2011  | 15,591 | $Y_1$   |
+| 2012  | 15,978 | $Y_2$   |
+| 2013  | 16,274 | $Y_3$   |
+| 2014  | 16,705 | $Y_4$   |
+
+Growth rate between years 2011 and 2012 is 
+
+$$g_{2,1} = \frac{Y_2}{Y_1} - 1 \simeq `r Y[2] / Y[1] - 1`$$
+
+---
+
+## Average growth rate
+
+The average annual growth rate can be computed by geometric average
+
+$$\begin{aligned}
+  \left(
+    \frac{Y_4}{Y_1}
+  \right)^{\frac{1}{4 - 1}} - 1
+  \simeq
+  `r (Y[4] / Y[1])^(1/(4 - 1)) - 1`
+\end{aligned}$$
+
+Notice that 
+
+$$\begin{aligned}
+  \left(
+    \frac{Y_4}{Y_1}
+  \right)^{\frac{1}{4 - 1}} - 1
+  =
+  \underbrace{\sqrt[3]{\frac{Y_4}{Y_3} \frac{Y_3}{Y_2} \frac{Y_2}{Y_1}}}_{\text{geometric mean}} - 1
+\end{aligned}$$
+
+You don't use arithmetic mean to compute average growth rate. 
+
+---
+
+## mean log difference
+
+$$\begin{aligned}
+  \frac{\ln Y_4 - \ln Y_1}{4 - 1}
+  \simeq
+  `r (log(Y[4]) - log(Y[1])) / (4 - 1)`
+\end{aligned}$$
+
+Difference in log, devided by the length of the period, 
+is close to the average growth rate.
+
+Geometric average corresponds to **effective rate**, while 
+the mean log difference corresponds to **nominal rate**.
+
+---
+
+## Compounding
+
+Assume that a bank offers an annual, nominal interest rate of 6% compounded monthly and that you make a deposit of one thousand dollars ($1,000) at the bank today. 
+
+How much do you expect to have in the bank account in one year from now?
+
+--
+
+$$1000 \times 
+\left(
+  1 + \frac{0.06}{12}
+\right)^{12}
+\simeq
+`r 1000 * (1 + 0.06 / 12) ^ 12`$$
+
+The rate of return is about 6.17%, which is larger than 6%.
+
+---
+
+## Two annual interest rates
+
+6% = Nominal annual interest rate  
+6.17% = Effective annual interest rate
+
+Be aware of the difference.
+
+As far as differential equations are concerned, nominal rates are more convenient. 
+
+---
+
+`r section("Differential Equations")`
+
+---
+
+## More frequent compounding
+
+Compounded $N$ times in one year.
+
+$$\lim_{N\to \infty} \left(
+  1 + \frac{0.06}{N}
+\right)^{N} 
+=
+e^{0.06} = \exp(0.06)$$
+
+Alternatively, let $\Delta = 1/N$ to get 
+
+$$\lim_{\Delta t \to 0} \left(
+  1 + 0.06 \Delta t
+\right)^{1/\Delta t} 
+=
+e^{0.06} = \exp(0.06)$$
+
+That is,
+
+* power 0.06 = nominal rate  
+* $e^{0.06}$ = effective rate
+
+Of course, log effective rate is nominal rate: $\ln e^{0.06} = 0.06$
+
+
+---
+
+## Relationship between nominal and effective rates
+
+$$\begin{aligned}
+  \left(
+    \frac{Y_T}{Y_0}
+  \right)^\frac{1}{T}
+  &=
+  \exp \left(
+    \ln \left(
+    \frac{Y_T}{Y_0}
+  \right)^\frac{1}{T}
+  \right) \\
+  &=
+  \exp \left(
+    \frac{\ln Y_T - \ln Y_0}{T}
+  \right)
+\end{aligned}$$
+
+$\frac{\ln Y_T - \ln Y_0}{T}$ is the nominal rate.
+
+---
+
+## Constant nominal growth rate
+
+The most important case is when the nominal growth rate is constant.
+
+$$\begin{aligned}
+  \frac{\ln Y_t - \ln Y_0}{t}
+  =
+  g
+\end{aligned}$$
+
+Rearranging, 
+
+$$\ln Y_t = \ln Y_0 + gt$$
+
+which tells you why semilog plots exhibit linearity. By taking log of both sides:
+
+$$Y_t = Y_0 e^{gt}$$
+
+---
+
+## Continuous-time modeling
+
+Let $t$ be any nonnegtive real number. 
+
+To clarify that $Y$ is a function of time, we rewrite as $Y(t) = Y(0) e^{gt}$
+
+```{r, echo=FALSE, out.width='350px'}
+t <- seq(1, 70, 0.1)
+Y <- function(x) exp(0.02 * x)
+ggplot2::ggplot(tibble(t, Y = Y(t))) + geom_line(aes(t, Y)) +
+  theme(text = element_text(size=30))
+```
+
+---
+
+## Differential equation
+
+Differentiate
+
+$$Y(t) = Y(0) e^{gt}$$
+
+with respect to time to get
+
+$$\frac{dY}{dt} (t) = g Y(0) e^{gt} = gY(t).$$
+
+For notational simplicity, we write the time-derivative as
+
+$$\dot Y = \frac{dY}{dt}$$
+
+
+---
+
+## Differential equation (cont'd)
+
+The following equation is an example of differential equations, in which
+a function is the unknown.
+
+$$\dot Y = gY \quad \text{or}\quad 
+\frac{\dot Y}{Y} = g$$
+
+This is the most important differential equation we use. 
+
+How can we get $Y(t) = Y(0)e^{gt}$ from this differential equation? 
+
+In other words, how can we **solve** this differential equation?
+
+
+---
+
+## Solving simple differential equation
+
+Notice that
+
+$$\frac{d}{dt}\left[ 
+  \ln Y(t)
+\right]
+=
+\frac{\dot Y(t)}{Y(t)}$$
+
+We thus have
+
+$$\frac{d}{dt}\left[ 
+  \ln Y(t)
+\right] = g
+\Longrightarrow
+\int d\left[
+  \ln Y(t)
+\right] = \int gdt$$
+
+Then
+
+$$\ln Y(t) = gt + \text{const.}$$
+
+---
+
+## Solving simple differential equation (cont'd)
+
+At $t = 0$,
+
+$$\ln Y(0) = \text{const.}$$
+
+We therefore have
+
+$$\ln Y(t) = \ln Y(0) + gt
+\Longrightarrow
+Y(t) = Y(0) e^{gt}$$
+
+To sum up,
+
+**
+$$\frac{\dot Y}{Y} = g
+\Longleftrightarrow
+Y(t) = Y(0) e^{gt}$$
+**
+
+---
+
+## Continuous-time modeling
+
+We will use **differential equations** to model the evolution of 
+the economy over time (i.e., dynamics of the model).
+
+Why is this strategy helpful?
+
+---
+
+## Force driving the economy
+
+$K(t)$ is the amount of physical capital at time $t$
+
+* machines
+* buildings
+* etc.
+
+Capital is used for current and future production and is a fundamental 
+source of wealth of the economy. 
+
+Consider an increase in $K(t)$ as one form of economic growth.
+
+---
+
+## Force driving the economy (cont'd)
+
+**Why does $K(t)$ increase?**
+
+**Why does $K(t)$ decrease?**
+
+
+
+---
+
+## Force driving the economy (cont'd)
+
+**Why does $K(t)$ increase?** → Investment
+
+* Let $I(t)$ denote the speed of investment ($/year) at time $t$.
+
+**Why does $K(t)$ decrease?** → Depreciation
+
+* Let $\delta$ denote the annual rate of depreciation. 
+* $\delta K(t)$ is the speed of depreciation at time $t$.
+
+The balance between the two forces determines the path of capital
+accumulation.
+
+---
+
+## Investment
+
+Let $K(t)$ be given. Let's observe how $K(t + \Delta t)$ is determined.
+
+The speed of investment is $I(t)$. 
+
+If the economy keeps that speed from $t$ to $t + \Delta t$, then
+the increment of capital between the two dates would be 
+
+$$I(t)\Delta t$$
+
+---
+
+## Capital depreciation
+
+The annual rate of depreciation is $\delta$. 
+
+In $\Delta t$ years, capital is reduced by 
+
+$$(\delta \Delta t) K(t)$$
+
+---
+
+## Capital accumulation
+
+Combining these forces,
+
+$$K(t + \Delta t) - K(t) = I(t)\Delta t - (\delta \Delta t) K(t)$$
+
+--
+
+Deviding by $\Delta t$, we get
+
+$$\frac{K(t + \Delta t) - K(t)}{\Delta t}
+=
+I(t) - \delta K(t)$$
+
+--
+
+By taking limit $\Delta t \to 0$,
+
+$$\dot K(t) = I(t) - \delta K(t)$$
+
+---
+
+## Differential equation, too mathematical?
+
+Instead of directly modeling the variable of interest $K$,  
+we start by describing increment/decrement of $K$.
+
+This modeling strategy gives a clear picture of how the economy
+evolves over time.
+
+* When $I(t) > \delta K(t)$, i.e., when investment exceeds depreciation, then 
+  $\dot K > 0$ and thus  $K$ is growing.
+* When $I(t) < \delta K(t)$, i.e., when depreciation exceeds investment, then
+  $\dot K < 0$ and thus $K$ is decreasing.
+* When $I(t) = \delta K(t)$, $K(t)$ stays steadily.
+
+
+
+
