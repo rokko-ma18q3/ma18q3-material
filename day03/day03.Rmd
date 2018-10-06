@@ -1,0 +1,362 @@
+---
+title: "Macroeconomic Modelling"
+author: "Kenji Sato"
+date: 'Day 3'
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    css: 
+      - "../asset/remark-css/style.css"
+    lib_dir: libs
+    nature:
+      countIncrementalSlides: no
+      highlightLines: yes
+      highlightStyle: github
+subtitle: Macroeconomics (2018Q3)
+header-includes: <script src="https://use.fontawesome.com/b5f301ecca.js"></script>
+---
+
+## Stocks and flows
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = 'center')
+source("../R/utils.R")
+library(tidyverse)
+library(cowplot)
+```
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nRlYGDBGcRA?ecver=1" frameborder="0" allowfullscreen></iframe>
+
+https://www.youtube.com/watch?v=nRlYGDBGcRA
+
+---
+
+## Stocks and flows in macroeconomics
+
+**Stock variables** measure the amount of something at some point in time.
+**Flow variables** measure the volume of economic activities that happen during a period.  
+.pull-left[
+Stocks
+- Capital
+- Savings
+- Labor force
+- Knowledge
+]
+
+.pull-right[
+Flows 
+- Investment (Capital formation)
+- Saving
+- Consumption
+- Production
+- Depreciation
+]
+
+---
+
+## Rule of Thumb
+
+If you see $\dot{X}$ of some variable $X$ in the set-up of the model, 
+$X$ is a stock variable.
+
+We must specify evolution of all the stock variables to complete model setting.
+(NB: You might have the time-derivative of flow variables as equilibrium conditions.)
+
+Example (capital stock):
+
+$$\dot K(t) = I(t) - \delta K(t)$$
+
+$K$ is a stock variable, while $I$ is a flow variable. $\delta K$ is flow.
+
+---
+
+`r section("Fundamental Identity")`
+
+---
+
+## Production
+
+Input factors: 
+
+- $K(t)$: Physical capital
+    - Machines, buildings, etc.
+- $L(t)$: Labor
+    - Working age population, total hours worked
+- $A(t)$: Knowledge
+    - Scientific knowledge, efficiency of labor
+
+---
+
+## Output
+
+Output:
+
+- $Y(t)$: Output
+
+The economy has access to a production technology that 
+can transform $(K, L)$ together with $A$ into the final output $Y$.
+
+Let's symbolize the production technology as $\tilde F$
+
+$$Y(t) = \tilde{F} (K(t), L(t), A(t))$$
+
+---
+
+## Expenditure approach to GDP
+
+Output $Y$ (GDP) is devided between 
+
+- $C$: Consumption
+- $I$: Investment
+- $G$: Government expenditure
+- $NX$: Net export (Export minus import)
+
+Fundamental macroeconomic identity: 
+
+$$Y = C + I + G + NX$$
+
+---
+
+## Consumer Behavior
+
+Consumers divide their disposable income between consumption, $C$, and saving, $S$. 
+
+$$Y - T = C + S,$$
+
+where $T$ is tax.
+
+---
+
+## Saving and investment
+
+Assume balanced budget:
+$$G = T$$
+
+From 
+
+$$\begin{aligned}
+  &Y = C + I + G + NX\\
+  &Y - T = C + S
+\end{aligned}$$
+
+we obtain
+
+$$S = I + NX$$
+
+Saving is divided between domestic investment and 
+(net) foreign investment.
+
+---
+
+## Assumptions of closed, free economy
+
+We assume that the there is no international trade; i.e.,
+
+$$NX = 0.$$
+
+We therefore have
+
+$$S = I$$
+For the time being we ignore government. 
+
+$$G = T = 0.$$
+
+---
+
+## Consumers' decision
+
+Ecnomic agents divide their income between consumption and saving.
+
+$$Y = C + S$$
+
+All the saving is used as gross capital formation (gross investment).
+
+$$S = I$$
+
+This investment (= saving) forms the future capital.
+
+---
+
+## Capital formation
+
+The amount of capital is determined by the capital accumulation equation.
+
+$$\dot K(t) = I(t) - \delta K(t)$$
+
+$$\text{(Net Investment)} = \text{(Gross Investment)} - \text{(Depreciation)}$$
+
+
+---
+
+## Income approach to GDP
+
+National income is (roughly) divided between capital income and labor income.
+
+$$Y = (r + \delta) K + w L,$$
+
+- $r$ is real rental rate (received by capitalist) 
+- $\delta$ is depreciation rate (received by _capital_)
+- $w$ is real wage rate
+
+The following two figures add to one. 
+
+$$\frac{(r + \delta) K}{Y} = \text{Capital share},
+\quad \frac{wL}{Y} = \text{Labor share}$$
+
+
+---
+
+`r section("Stylized facts")`
+
+---
+
+
+## Kaldor's facts
+
+[Kaldor (1961)](https://scholar.google.co.jp/scholar?q=Capital+accumulation+and+economic+growth+kaldor&btnG=&hl=en&as_sdt=0%2C5) observed the following facts, which are referred 
+to as the stylized facts. [Jones and Romer (2010)](https://www.aeaweb.org/articles?id=10.1257/mac.2.1.224)
+
+1. Labor productivity has grown at a sustained rate.
+2. Capital per worker has also grown at a sustained rate.
+3. The real interest rate or return on capital has been stable.
+4. The ratio of capital to output has been stable.
+5. Capital and labor have captured stable shares of national income.
+6. Among the fast growing countries of the world, there is an appreciable variation in the rate of growth.
+
+---
+
+## Kaldor's facts (1 - 5)
+
+Borrowing the mathematical notations defined earlier, 
+1 - 5 of the stylized facts can be translated as
+
+1. $Y / L$ grows at a sustained rate.
+2. $K / L$ grows at a sustained rate.
+3. $r$ is constant.
+4. $K / Y$ is constant.
+5. $(r + \delta)K / Y$ and $wL / Y$ are constant.
+
+---
+
+## Penn World Table
+
+```{r}
+pwt90 <- haven::read_dta("~/Data/pwt90.dta")
+usa <- pwt90 %>% 
+  filter(country == "United States") %>% 
+  mutate(capsh = (1 - labsh), 
+         caprtrn = capsh * rgdpo / rkna - delta)
+p <- ggplot(usa)
+```
+
+We estimate $r$ with 
+
+$$r = \left(
+  1 - \frac{wL}{Y}
+\right) \frac{Y}{K} - \delta$$
+
+---
+
+## 1. Per-Labor Output $Y / L$
+
+```{r, out.width="400px"}
+p + geom_line(aes(year, cgdpo / emp), size = 2)
+```
+
+
+---
+
+## 2. Caiptal-Labor ratio $K / L$
+
+```{r, out.width="400px"}
+p + geom_line(aes(year, rkna / emp), size = 2)
+```
+
+
+---
+
+## 3. Rental rate
+
+```{r, out.width="400px"}
+p + geom_line(aes(year, caprtrn), size = 2) + ylim(0, 0.15)
+```
+
+---
+
+## 4. Capital-Output ratio $K / Y$
+
+```{r, out.width="400px"}
+p + geom_line(aes(year, rkna / rgdpe), size = 2) + ylim(0, 5)
+```
+
+---
+
+## 5. Labor Share $wL / Y$
+
+```{r, out.width="400px"}
+p + geom_line(aes(year, labsh), size = 2) + ylim(0, 1.2)
+```
+
+---
+
+
+`r section("Solow Model")`
+
+---
+
+## Assumptions on the production function
+
+In the Solow model, 
+
+- The technical change is purely labor augmenting, i.e.
+  $$\tilde{F}(K, L, A) = F(K, AL)$$
+- The production function, $F$, is homogeneous of degree one, i.e., for 
+  all $c \ge 0$,
+  $$F(cK, cAL) = cF(K, AL)$$
+
+$AL$ is called **effective labor**.
+
+---
+
+## Assumption on the consumer behavior
+
+Under the closed economy assumption, $Y = C + S$.
+
+- A constant fraction, $s$, of output is saved, and the rest, $1 - s$, is consumed; i.e.,
+  $$C = (1 - s) Y \quad \text{and}\quad S = sY$$
+
+The saving rate, $s$, is constant.
+
+---
+
+## Assumption on growth of $A$ and $L$
+
+Knowledge $A$ and labor (or population) $L$ grow exogenously.
+
+$$\begin{aligned}
+  \dot A &= g A\\
+  \dot L &= n L
+\end{aligned}$$
+
+- $g$ is the growth rate of technology and 
+- $n$ the population growth rate.
+
+$g$ and $n$ are constant.
+
+---
+
+## Summary: Solow Model
+
+The following parameters characterize the Solow model:
+
+- $F$: production function
+- $s$: saving rate
+- $\delta$: depreciation rate
+- $g$: technology growth rate
+- $n$: population growth rate
+
+---
+
+background-image: url("images/economy_diagram.jpeg")
+
+
