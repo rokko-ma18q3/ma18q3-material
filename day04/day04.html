@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Solow Model</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Kenji Sato" />
+    <script src="https://use.fontawesome.com/b5f301ecca.js"></script>
+    <link rel="stylesheet" href="../asset/remark-css/style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Solow Model
+## Macroeconomics
+### Kenji Sato
+### Day 4
+
+---
+
+
+
+
+class: center, middle
+ # Growth Rate Formulas 
+
+
+
+---
+
+## Review for the problem set
+
+
+- `\(Y/L\)` grows at a sustained rate (Item 1)
+- `\(K/Y\)` is constant (Item 4)
+
+jointly imply
+
+- `\(K/L\)` grows at a sustained rate. (Item 2)
+
+---
+
+## Proof
+
+Notice that 
+
+`$$\begin{aligned}
+  \frac{K}{L} = \underbrace{\frac{K}{Y}}_{\text{is constant}} 
+                \times
+                \underbrace{\frac{Y}{L}}_{\text{has a constant growth rate}}
+\end{aligned}$$`
+
+We have `\(K/L\)` has a constant growth rate. 
+
+`\(K/L\)` and `\(Y/L\)` grow at the same rate.
+
+---
+
+## Growth rate 
+
+Let `\(X\)` be a time-series variable and `\(g_X\)` the growth rate of `\(X\)`, i.e.,
+
+`$$g_X = \frac{\dot X}{X}$$`
+
+Interpret this with the "discrete-time approximation." 
+
+`$$\begin{aligned}
+  \frac{\dot X(t)}{X(t)} 
+  \simeq
+  \frac{[X(t+\Delta t) - X(t)] / \Delta t}{ X(t)}
+\end{aligned}$$`
+
+
+---
+
+## Growth rate 
+
+
+It might be tempting to define the growth rate with 
+
+`$$\begin{aligned}
+  &amp; \frac{X(t+\Delta t) - X(t)}{X(t)}  &amp; (\text{bad formula!})
+\end{aligned}$$`
+
+but this is wrong. You always get zero when `\(\Delta t \to 0\)`.
+
+Convert the change in `\(X\)` into an equivalent change for a year (or month/quarter etc.) and then compute the growth rate. 
+
+This is why we have `\(\Delta t\)` in 
+
+`$$\begin{aligned}
+  \frac{\dot X(t)}{X(t)} 
+  \simeq
+  \frac{[X(t+\Delta t) - X(t)] / \Delta t}{ X(t)}
+  =
+  \frac{\text{Change in one year}}{\text{Original level}}
+\end{aligned}$$`
+
+
+---
+
+## Growth rate formulas
+
+Let `\(X, Y\)` be a time-series variable and `\(\alpha\)` a constant number.
+
+We have the following formulas: 
+
+1. ** `\(g_{XY} = g_X + g_Y\)`**. Equivalently, 
+`$$\frac{\frac{d}{dt}(XY)}{XY} = \frac{\dot X}{X} + \frac{\dot Y}{Y}$$`
+1. ** `\(g_{X/Y} = g_X - g_Y\)`**
+1. ** `\(g_{X^\alpha} = \alpha g_X\)`**
+
+
+[Your turn] Prove these facts using:
+
+`$$\begin{aligned}
+  \frac{d}{dt}\left(
+    \ln X
+  \right)
+  =
+  \frac{\dot X}{X}
+\end{aligned}$$`
+
+---
+
+class: center, middle
+ # Solow Model 
+
+
+
+---
+
+## Solow Model
+
+The following parameters characterize the Solow model:
+
+- `\(F(K, AL)\)`: production function
+- `\(s\)`: saving rate
+- `\(\delta\)`: depreciation rate
+- `\(g\)`: technology growth rate
+- `\(n\)`: population growth rate
+
+---
+
+background-image: url("images/economy_diagram.jpeg")
+
+---
+
+## Assumptions on the production function
+
+In the Solow model, 
+
+- The technical change is purely labor augmenting, i.e.
+  `$$\tilde{F}(K, L, A) = F(K, AL)$$`
+- The production function, `\(F\)`, is homogeneous of degree one, i.e., for 
+  all `\(c \ge 0\)`,
+  `$$F(cK, cAL) = cF(K, AL)$$`
+
+`\(AL\)` is called **effective labor**.
+
+---
+
+## Assumption on the consumer behavior
+
+A constant fraction, `\(s\)`, of output is saved, and the rest, `\(1 - s\)`, is consumed; i.e.,
+
+`$$C = (1 - s) Y \quad \text{and}\quad S = sY$$`
+
+Under the closed economy assumption, `\(S = I\)`. 
+
+The saving rate, `\(s\)`, is constant. The capital accumulation equation can be written as:
+
+`$$\begin{aligned}
+  \dot K
+  &amp;= I - \delta K\\
+  &amp;= S - \delta K\\
+  &amp;= sY - \delta K\\
+  &amp;= sF(K, AL) - \delta K
+\end{aligned}$$`
+
+---
+
+## Assumption on growth of `\(A\)` and `\(L\)`
+
+Knowledge `\(A\)` and labor (or population) `\(L\)` grow at exogenously
+given constant rates.
+
+`$$\begin{aligned}
+  \dot A &amp;= g A\\
+  \dot L &amp;= n L
+\end{aligned}$$`
+
+- `\(g\)` is the growth rate of technology and 
+- `\(n\)` the population growth rate.
+
+We assume that 
+
+`$$\delta + g + n &gt; 0$$`
+
+---
+
+## Capital per unit of effective labor
+
+Variables of interest are 
+
+* `\(Y\)`: Output
+* `\(K\)`: Capital
+* `\(C\)`: Consumption
+* `\(Y/L\)`: Output per capita
+* `\(K/L\)`: Capital per capita
+* `\(C/L\)`: Consumption per capita
+
+Instead of analyzing the behavior of them directly, we study that of
+**capital per effective labor**
+
+`$$k = \frac{K}{AL}$$`
+
+---
+
+## Output per unit of effective labor
+
+`$$\begin{aligned}
+  \frac{Y}{AL} 
+  = \frac{F(K, AL)}{AL}
+  = F\left(
+    \frac{K}{AL}, \frac{AL}{AL}
+  \right)
+  = F(k, 1)
+\end{aligned}$$`
+
+Define
+`$$y = \frac{Y}{AL} \quad
+\text{and} \quad
+f(k) = F(k, 1).$$`
+
+We have the **intensive-form production function**
+`$$y = f(k)$$`
+
+
+---
+
+## Assumption on `\(f\)`
+
+The following assumptions are made for `\(f\)`:
+
+* `\(f(0) = 0\)`
+* `\(f'(k) &gt; 0\)`
+* `\(f''(k) &lt; 0\)` 
+* `\(f'(0) &gt; (\delta + g + n) / s\)`
+* `\(f'(\infty) &lt; (\delta + g + n) / s\)`
+
+Usually we assume stronger conditions called Inada conditions:
+
+* `\(f'(0) = \infty\)`
+* `\(f'(\infty) = 0\)`
+
+---
+
+## Shape of `\(f\)`
+
+`\(f\)` is increasing, has diminishing marginal productivity, and satisfies Inada conditions.
+
+&lt;img src="day04_files/figure-html/unnamed-chunk-1-1.png" width="400px" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Capital accumulation per `\(AL\)`
+
+Divide by `\(AL\)`
+
+`$$\dot K = sF(K, AL) - \delta K$$`
+
+to get 
+
+--
+
+`$$\frac{\dot K}{AL} = sf(k) - \delta k$$`
+and then 
+
+`$$\frac{\dot K}{K} k = sf(k) - \delta k$$`
+
+
+How can we express `\(\dot K/K\)` with `\(k\)`?
+
+---
+
+## `\(\dot K / K =\ ?\)`
+
+Recall that 
+
+`$$k = \frac{K}{AL}$$`
+
+The growth rate of `\(k\)` is 
+
+`$$\begin{aligned}
+\frac{\dot k}{k}
+&amp;= \frac{\dot K}{K} - \frac{\dot A}{A} - \frac{\dot L}{L}\\
+\end{aligned}$$`
+
+and thus
+
+`$$\begin{aligned}
+  \frac{\dot K}{K}
+  =
+  \frac{\dot k}{k} + g + n
+\end{aligned}$$`
+
+
+---
+
+## Capital accumulation equation 
+
+We now have 
+`$$\begin{aligned}
+  \frac{\dot K}{K} k &amp;= sf(k) - \delta k\\
+  \frac{\dot K}{K}   &amp;= \frac{\dot k}{k} + g + n
+\end{aligned}$$`
+
+Therefore,
+
+`$$\dot k = sf(k) - (\delta + g + n) k$$`
+
+This is _the_ fundamental differential equation that governs the dynamics 
+of the Solow economy.
+
+
+---
+
+## Dynamics
+
+`$$\dot k = sf(k) - (\delta + g + n) k$$`
+
+* `\(sf(k) &gt; (\delta + g + n) k \Longrightarrow k\)` increases.
+* `\(sf(k) = (\delta + g + n) k \Longrightarrow k\)` stays unchanged.
+* `\(sf(k) &lt; (\delta + g + n) k \Longrightarrow k\)` decreases.
+
+Due to the assumptions on `\(f\)`, it is shown that 
+
+* `\(k\)` grows when `\(k\)` is sufficiently small
+* `\(k\)` decreases when `\(k\)` is sufficiently large
+
+There is a threashold value `\(k^*\)`, below which `\(k\)` grows and above which `\(k\)` decreases.
+
+
+---
+
+## Graphical exposition
+
+&lt;img src="solow_model/solow_model.001.jpeg" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Dynamics for `\(k(0) &lt; k^*\)`
+
+&lt;img src="solow_model/solow_model.002.jpeg" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Dynamics for `\(k(0) &gt; k^*\)`
+
+&lt;img src="solow_model/solow_model.003.jpeg" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Dynamics for `\(k(0) = k^*\)`
+
+&lt;img src="solow_model/solow_model.004.jpeg" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: center, middle
+ # Balanced Growth 
+
+
+
+---
+
+## Long-run equilibrium
+
+Since `\(k(t)\)` alwyas converges to steady state `\(k^*\)`, `\(k^*\)` can be considered as 
+the long-run equilibrium.
+
+The economy with 
+
+`$$k(t) = k^*$$`
+
+is a nice benchmark case for our study.
+
+In the steady state, there is no growth in `\(k\)`. 
+
+But what about `\(Y, K, C\)` and `\(Y/L, K/L, C/L\)`?
+
+
+---
+
+## Aggregate variables
+
+In the steady state,
+
+`$$K = AL k^*,\quad
+Y = ALf(k^*), \quad \text{and} \quad
+C = AL (1 - s)f(k^*)$$`
+
+They all grow at the rate of 
+
+`$$g + n$$`
+
+
+---
+
+## Per-capita variables
+
+In the steady state,
+
+`$$\frac{K}{L} = Ak^*, \quad
+\frac{Y}{L} = Af(k^*), \quad \text{and}, \quad
+\frac{C}{L} = A(1-s)f(k^*)$$`
+
+They all grow at the rate of 
+
+`$$g$$`
+
+
+---
+
+## Balanced Growth
+
+In the steady state, all the important variables grow at constant rates.
+
+This situation is called **balanced growth**.
+
+We use phrases "in the steady state" and "along the balanced growth path"
+interchangeably.
+
+---
+
+## Interest rate
+
+The firm's profit maximization in the competitive factor market
+dictates that marginal product of capital equals rate of return
+on capital.
+
+`$$\frac{\partial F}{\partial K} = r + \delta$$`
+
+Notice that 
+
+`$$\frac{\partial}{\partial K}F(K, AL)
+= AL \frac{\partial}{\partial K}F(k(K, AL), 1)
+= AL \frac{d F(k, 1)}{dk} \frac{\partial k}{\partial K}$$`
+
+
+`$$\Longrightarrow
+\frac{\partial F}{\partial K} = f'(k)$$`
+
+since `\(dk/dK = 1/AL\)`.
+
+---
+
+## Interest rate (cont'd)
+
+In the steady state, 
+
+`$$f'(k^*) = r + \delta,$$`
+which is constant over time.
+
+---
+
+## Wage
+
+
+The firm's profit maximization in the competitive factor market
+dictates that marginal product of labor equals wage rate.
+
+`$$\frac{\partial F}{\partial L} = w$$`
+
+By Euler's theorem on homogeneous functions,
+
+`$$F(K, AL) = K \frac{\partial F}{\partial K} + L \frac{\partial F}{\partial L}$$`
+
+---
+
+## Wage (cont'd)
+
+Divide by `\(AL\)` to get
+
+`$$f(k) = k f'(k) + \frac{w}{A}$$`
+
+and 
+
+`$$w = A\left[f(k) - kf'(k)\right]$$`
+
+It is sometimes useful to introduce thewage per unit of effective labor 
+
+`$$\hat{w} := \frac{w}{A} = f(k) - kf'(k)$$`
+
+---
+
+## Exercise: Stylized facts
+
+Verify that the steady state of the Solow model can explain the stylized facts.
+
+1. `\(Y / L\)` grows at a sustained rate.
+2. `\(K / L\)` grows at a sustained rate.
+3. `\(r\)` is constant.
+4. `\(K / Y\)` is constant.
+5. `\((r + \delta)K / Y\)` and `\(wL / Y\)` are constant.
+
+
+
+---
+
+## Quiz
+
+How fast does the wage grow along the balanced growth path? 
+
+--
+
+Recall
+
+`$$w = A\left[f(k^*) - k^*f'(k^*)\right]$$`
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": false,
+"highlightLines": true,
+"highlightStyle": "github"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
