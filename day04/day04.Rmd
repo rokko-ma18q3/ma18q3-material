@@ -108,6 +108,7 @@ $$\frac{\frac{d}{dt}(XY)}{XY} = \frac{\dot X}{X} + \frac{\dot Y}{Y}$$
 1. ** $g_{X/Y} = g_X - g_Y$**
 1. ** $g_{X^\alpha} = \alpha g_X$**
 
+---
 
 [Your turn] Prove these facts using:
 
