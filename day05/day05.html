@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Solow Model (continued)</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Kenji Sato" />
+    <script src="https://use.fontawesome.com/b5f301ecca.js"></script>
+    <link rel="stylesheet" href="../asset/remark-css/style.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Solow Model (continued)
+## Macroeconomics
+### Kenji Sato
+### Day 05
+
+---
+
+
+
+
+
+class: center, middle
+ # Balanced Growth 
+
+
+
+---
+
+## Long-run equilibrium
+
+Since `\(k(t)\)` alwyas converges to steady state `\(k^*\)`, `\(k^*\)` can be considered as 
+the long-run equilibrium.
+
+The economy with 
+
+`$$k(t) = k^*$$`
+
+is a nice benchmark case for our study.
+
+In the steady state, there is no growth in `\(k\)`. 
+
+But what about `\(Y, K, C\)` and `\(Y/L, K/L, C/L\)`?
+
+
+---
+
+## Aggregate variables
+
+In the steady state,
+
+`$$K = AL k^*,\quad
+Y = ALf(k^*), \quad \text{and} \quad
+C = AL (1 - s)f(k^*)$$`
+
+They all grow at the rate of 
+
+`$$g + n$$`
+
+
+---
+
+## Per-capita variables
+
+In the steady state,
+
+`$$\frac{K}{L} = Ak^*, \quad
+\frac{Y}{L} = Af(k^*), \quad \text{and}, \quad
+\frac{C}{L} = A(1-s)f(k^*)$$`
+
+They all grow at the rate of 
+
+`$$g$$`
+
+
+---
+
+## Balanced Growth
+
+In the steady state, all the important variables grow at constant rates.
+
+This situation is called **balanced growth**.
+
+We use phrases "in the steady state" and "along the balanced growth path"
+interchangeably.
+
+---
+
+## Interest rate
+
+The firm's profit maximization in the competitive factor market
+dictates that marginal product of capital equals rate of return
+on capital.
+
+`$$\frac{\partial F}{\partial K} = r + \delta$$`
+
+Notice that 
+
+`$$\frac{\partial}{\partial K}F(K, AL)
+= AL \frac{\partial}{\partial K}F(k(K, AL), 1)
+= AL \frac{d F(k, 1)}{dk} \frac{\partial k}{\partial K}$$`
+
+
+`$$\Longrightarrow
+\frac{\partial F}{\partial K} = f'(k)$$`
+
+since `\(dk/dK = 1/AL\)`.
+
+---
+
+## Interest rate (cont'd)
+
+In the steady state, 
+
+`$$f'(k^*) = r + \delta,$$`
+which is constant over time.
+
+---
+
+## Wage
+
+
+The firm's profit maximization in the competitive factor market
+dictates that marginal product of labor equals wage rate.
+
+`$$\frac{\partial F}{\partial L} = w$$`
+
+By Euler's theorem on homogeneous functions,
+
+`$$F(K, AL) = K \frac{\partial F}{\partial K} + L \frac{\partial F}{\partial L}$$`
+
+---
+
+## Wage (cont'd)
+
+Divide by `\(AL\)` to get
+
+`$$f(k) = k f'(k) + \frac{w}{A}$$`
+
+and 
+
+`$$w = A\left[f(k) - kf'(k)\right]$$`
+
+It is sometimes useful to introduce thewage per unit of effective labor 
+
+`$$\hat{w} := \frac{w}{A} = f(k) - kf'(k)$$`
+
+---
+
+## Exercise: Stylized facts
+
+Verify that the steady state of the Solow model can explain the stylized facts.
+
+1. `\(Y / L\)` grows at a sustained rate.
+2. `\(K / L\)` grows at a sustained rate.
+3. `\(r\)` is constant.
+4. `\(K / Y\)` is constant.
+5. `\((r + \delta)K / Y\)` and `\(wL / Y\)` are constant.
+
+
+---
+
+
+## Quiz
+
+Consider a Solow economy. 
+How fast does the wage grow along the balanced growth path? 
+
+--
+
+Recall
+
+`$$w = A\left[f(k^*) - k^*f'(k^*)\right]$$`
+
+
+---
+
+class: center, middle
+ # Transition and comparative dynamics 
+
+ 
+
+---
+
+## Sudden increase of s
+
+&lt;img src="solow_model/solow_model.005.jpeg" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Sudden change of `\(C/AL\)` and `\(S/AL\)`
+
+&lt;img src="solow_model/solow_model.006.jpeg" style="display: block; margin: auto;" /&gt;
+
+
+--- 
+
+## Transition to new steady state
+
+&lt;img src="solow_model/solow_model.007.jpeg" style="display: block; margin: auto;" /&gt;
+
+---
+
+## New steady state
+
+&lt;img src="solow_model/solow_model.008.jpeg" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Welfare gain in the long run
+
+Whether or not the consumption becomes larger than the original steady-state 
+value in the long run depends on the initial saving rate.
+
+The steady-state value for consumption per unit of effective labor 
+
+`$$c^* = \frac{C}{AL}$$`
+
+is maximized when
+
+`$$f'(k^*) = \delta + g + n$$`
+
+---
+
+## Welfare gain in the long run
+
+Let `\(s_G\)` be the saving rate that the corresponding steady state `\(k^*_G\)`
+satisfies
+
+`$$f'(k^*_G) = \delta + g + n$$`
+
+* `\(s_G\)` and `\(k^*_G\)` and the Golden-Rule
+* If an economy in the steady state with `\(s_1 &lt; s_G\)` experiences a hike 
+  in the saving rate to `\(s_2 &lt; s_G\)`, then the consumption per unit of effective 
+  labor initially drops but eventually gets larger than the original steady 
+  state value
+  
+---
+
+## Dynamic inefficiency for `\(s &gt; s_G\)`
+
+Let's do a similar exercise with `\(s &gt; s_G\)`.
+  
+Suppose that the economy's saving rate is `\(s_1 &gt; s_G\)` and it's on the 
+balanced growth path. The saving rate suddenly drops to `\(s_2 &gt; s_G\)`. 
+
+
+The economy increases the amount of consumption immediately and continue 
+to enjoy larger consumption. 
+
+This means that if the consumers are allowed to chose their saving rate,
+they wouldn't choose `\(s &gt; s_G\)` because by reducing `\(s\)` they can consume more
+at any point in time.
+
+
+---
+
+## Exercise
+
+What happens in response to the following changes of parameter?
+
+* Increase/decrease of `\(\delta\)`
+* Increase/decrease of `\(g\)`
+* Increase/decrease of `\(n\)`
+
+Describe 
+
+* long-run growth and 
+* transition path to the new steady state
+
+
+---
+
+class: center, middle
+ # some empirical observations 
+
+
+
+---
+
+## Cobb-Douglas production function
+
+Let's suppose
+`$$\begin{aligned}
+  F(K, AL) = K^\alpha (AL)^{1-\alpha}, \quad 0 &lt; \alpha &lt;1
+\end{aligned}$$`
+
+Corresponding intensive form:
+
+--
+
+`$$\begin{aligned}
+  f(k) = k^\alpha
+\end{aligned}$$`
+
+--
+
+The steady state for the Solow model
+
+--
+
+`$$\begin{aligned}
+  k^* = \left(
+    \frac{s}{\delta + g + n}
+  \right)^{\frac{1}{1 - \alpha}}
+\end{aligned}$$`
+
+
+---
+
+## What's `\(\alpha\)`?
+
+`\(\alpha\)` is the capital share!
+
+Exercise: Prove that 
+
+`$$\begin{aligned}
+  \alpha = \frac{(r + \delta) K}{Y}
+\end{aligned}$$`
+---
+
+
+class: center, middle
+ # Convergence 
+
+
+
+---
+
+## Growth rate in transition
+
+Consider a transition path.
+
+The growth rate of output
+
+`$$\begin{aligned}
+\frac{\frac{d}{dt}\left( Y/L \right)}{Y/L} &amp;=
+\frac{\frac{d}{dt}\left( Ak^\alpha \right)}{Ak^\alpha} =
+g + \alpha \frac{\dot k}{k}
+\end{aligned}$$`
+
+Since the second term is large and positive when `\(k\)` is small, 
+relatively poor countries tend to grow rapidly. 
+
+
+---
+
+## Testable prediction
+
+If the Solow model is correct, the growth rate declines as an economy matures. This trend should be widely observed and we call this situation "convergence."
+
+You can estimate the following model to test if the average growth rate is negatively correlated with the initial wealth. 
+
+
+`$$\begin{aligned}
+   \ln \left(Y_t/L_t \right) - \ln \left( Y_0/L_0 \right)
+   =
+   \beta_0 + \beta_1 \ln(Y_0 / L_0)
+\end{aligned}$$`
+
+---
+
+class: center, middle
+ # Cross-country income differences 
+
+
+
+---
+
+
+## Per-capita income
+
+Per-capita income in the steady state is
+
+`$$\begin{aligned}
+  \frac{Y}{L} 
+  &amp;= 
+  A \left(
+    \frac{s}{\delta + g + n}
+  \right)^{\frac{\alpha}{1 - \alpha}}\\
+  &amp;=
+  A(0)e^{gt}
+  \left(
+    \frac{s}{\delta + g + n}
+  \right)^{\frac{\alpha}{1 - \alpha}}
+\end{aligned}$$`
+
+Taking log,
+
+`$$\begin{aligned}
+  \ln \frac{Y}{L} = \text{const.} + gt 
+    +\frac{\alpha}{1 - \alpha} \ln s
+    -\frac{\alpha}{1 - \alpha} \ln (\delta + g + n)
+\end{aligned}$$`
+
+
+---
+
+## Testable prediction
+
+`$$\begin{aligned}
+  \ln \frac{Y}{L} = \text{const.} + gt 
+    +\frac{\alpha}{1 - \alpha} \ln s
+    -\frac{\alpha}{1 - \alpha} \ln (\delta + g + n)
+\end{aligned}$$`
+
+The Solow model predicts that, other things being equal, one percent increase in `\(s\)` (e.g. from 30% to 30.3%) results in an increase of `\(Y/L\)` by `\(\frac{\alpha}{1 - \alpha}\times 100\)` percent.
+
+Common wisdom suggests `\(\alpha \simeq 1/3\)` and the elasticity of output with respect to the saving rate should thus be
+
+`$$\frac{\alpha}{1-\alpha} \simeq \frac{1}{2}$$`
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": false,
+"highlightLines": true,
+"highlightStyle": "github"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
