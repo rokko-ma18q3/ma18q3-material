@@ -1,0 +1,440 @@
+---
+title: "Mankiw, Romer and Weil (1992)"
+author: "Kenji Sato"
+date: 'Day 07'
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    css: 
+      - "../asset/remark-css/style.css"
+    lib_dir: libs
+    nature:
+      countIncrementalSlides: no
+      highlightLines: yes
+      highlightStyle: github
+subtitle: Macroeconomics
+header-includes: <script src="https://use.fontawesome.com/b5f301ecca.js"></script>
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = 'center')
+source("../R/utils.R")
+library(tidyverse)
+```
+
+
+`r section("Mankiw, Romer and Weil 1992")`
+
+---
+
+## MRW
+
+In today's class and the next, we study the theory proposed by [Mankiw, Romer and Weil (1992, QJE)](https://doi.org/10.2307/2118477) (henceforth, MRW) 
+
+This paper is extremely influential. Please read it.
+
+---
+
+## Cobb-Douglas production function
+
+We consider the following function form:
+
+$$F(K, L) = K^\alpha L^{1 - \alpha}$$
+
+The intensive-form:
+
+$$f(k) = k^\alpha$$ 
+
+---
+
+## Steady state
+
+Verify that the steady state is given by 
+
+$$k^* = \left(\frac{
+  s
+}{
+  \delta + g + n
+}\right)^{\frac{1}{1 - \alpha}}$$
+
+and that output per worker is given by
+
+$$\frac{Y}{L}
+=
+A \left(\frac{
+  s
+}{
+  \delta + g + n
+}\right)^{\frac{\alpha}{1 - \alpha}}$$
+
+---
+
+## Elasticity of output per capita wrt saving rate
+
+$$\ln \left( \frac{Y}{L} \right) =
+\log A(0) + gt + \frac{\alpha}{1 - \alpha} \ln (s)
+-\frac{\alpha}{1 - \alpha} \ln (\delta + g + n)$$
+
+Data suggests that 
+
+$$\alpha \simeq \frac{1}{3} \Longrightarrow
+\frac{\alpha}{1 - \alpha} \simeq \frac{1}{2}$$
+
+The Solow model, therefore, suggests that 1% increase of $s$ implies 
+0.5% increase of $Y/L$.
+
+Increment of $\delta + g +n$ by 1% decreases $Y/L$ by 0.5%.
+
+
+---
+
+## Question
+
+Do data support these predictions of the Solow model
+concerning the determinant of standard of living?
+
+---
+
+## Assumptions
+
+MRW assumes the following: 
+
+* $g$ and $\delta$ are constant across countries.
+    * advancement of knowledge, which $g$ reflects, is not country-specific
+    * no strong reason to expect $\delta$ to vary across countries
+* A(0) is decomposed into $A(0) = a + \epsilon_j$, where $a$ is common to 
+  all countries and $\epsilon_j$ is country-specific shock.
+
+---
+
+## Empirical specification
+
+Consider $t = 0$.
+
+MRW's first empirical specification:
+
+$$\ln \left( \frac{Y_j}{L_j} \right) =
+a + \frac{\alpha}{1 - \alpha} \ln (s_j)
+-\frac{\alpha}{1 - \alpha} \ln (\delta + g + n_j) + \epsilon_j$$
+
+Under the assumption that $s$ and $n$ are independent of $\epsilon$
+we can estimate the above with the ordinary least squares.
+
+$$\ln \left( \frac{Y_j}{L_j} \right) =
+\beta_0 + \beta_s \ln (s_j) +
+\beta_n \ln (\delta + g + n_j) + \epsilon_j$$
+
+---
+
+## Empirical specification (cont'd)
+
+$$\ln \left( \frac{Y_j}{L_j} \right) =
+\beta_0 + \beta_s \ln (s_j) +
+\beta_n \ln (\delta + g + n_j) + \epsilon_j$$
+
+If the Solow model is a good model of the economy, then the 
+OLS would predict
+
+$$\beta_s \simeq 0.5$$
+
+$$\beta_n \simeq - 0.5$$
+
+
+To perform the empirical exercise, we need to determine
+$Y_j/L_j$, $s_j$, and $\delta + g + n_j$ from data.
+
+---
+
+## Empirical specification (restricted regression)
+
+Since the model predicts that $\beta_s$ and $\beta_n$ are 
+the same in maginitude and opposite in sign, the 
+following specification should work.
+
+$$\ln \left( \frac{Y_j}{L_j} \right) =
+\beta_0 + \beta_1 \left( 
+  \ln (s_j) - \ln (\delta + g + n_j)
+\right) + \epsilon_j$$
+
+
+
+---
+
+## Data
+
+MRW uses data set constructed by Summers and Heston (1988), an earlier version of 
+the Penn World Table that you are already familiar with.
+
+Their dataset convers the period of 1960 to 1985.
+
+---
+
+## Data (cont'd)
+
+They measure 
+
+* $n_j$ as the **average rate of growth of the working-age population**.
+  (Unlike PWT v9.0, the earlier version does not contain total number of the 
+  employed.)
+* $s_j$ as the average share of real private and public investment. (**average 
+  share of gross capital formation**)
+* $Y_j/L_j$ as **real GDP devided by the working-age population** in 1985.
+  (1985 is the latest sample in their dataset.)
+
+They simply assume that $\delta + g = 0.05$.
+
+---
+
+## Non-oil, Intermediate, OECD
+
+They used three sample for the empirical study.
+
+* Non-oil countries exclude countries that are heavily reliant on oil production.
+* Intermediate countries exclude countries whose population in 1960 is less than 1 million.
+* OECD countries consist of OECD countries with populations greater than 1 million.
+
+
+.small[
+According to a recent data by World Bank, Venezuela and Chad are more heavily reliant 
+on oil than Iran but MRW includes those two countries while excluding Iran. 
+]
+
+
+---
+
+Table 1 on p. 414 (emphasis added)
+
+```{r, echo=FALSE, out.width="600px"}
+knitr::include_graphics("images/mrw_table1.png")
+```
+
+---
+
+## Implied $\alpha$
+
+The restricted regression predicts higher $\alpha \simeq 0.59$ from 
+the coefficient on ln(I/GDP);
+
+$$\frac{\alpha}{1- \alpha} \simeq 1.43$$
+
+implies
+
+$$\alpha \simeq 0.588..$$
+
+which is much higher than the common wisdom $\alpha \simeq 1/3$.
+
+---
+
+## Exercise (A part of the homework series)
+
+Do the above two regression analyses 
+
+* non-restricted, bivariate OLS
+* restricted, simple OLS
+
+with PWT v9.0 dataset with 
+
+* countries the populations of which in 1960 are more than 1 million,
+
+Report on what you observe.
+
+---
+
+## What's missing?
+
+MRW's strategy to fix the bad prediction: 
+
+**Add human capital to the Solow model**
+
+---
+
+## Production function
+
+Let $0 < \alpha + \beta < 1$, $\alpha, \beta > 1$. The output is given by
+
+$$Y = K^\alpha H^\beta (AL)^{1 - \alpha - \beta}$$
+
+* $H =$ stock of human capital
+* $K =$ stock of physical capital
+* $A =$ knoledge
+* $L =$ labor
+
+$$\begin{aligned}
+  k = \frac{K}{AL},\quad
+  h = \frac{H}{AL},\quad
+  y = \frac{Y}{AL} = k^\alpha h^\beta
+\end{aligned}$$
+
+---
+
+## Investment
+
+They assume that the investment rates are constant for both capitals and that the depreciation rate is common.
+
+* $s_k =$ saving rate for physical capital $K$
+* $s_h =$ saving rate for human capital $H$
+* $\delta =$ depreciation for both $K$ and $H$ 
+
+Verify that 
+
+$$\begin{aligned}
+  \dot k &= s_k k^\alpha h^\beta - (\delta + g + n) k\\
+  \dot h &= s_h k^\alpha h^\beta - (\delta + g + n) h
+\end{aligned}$$
+
+---
+
+## Your turn
+
+Compute the steady state values
+
+$$k^* \quad \text{and} \quad h^*$$
+
+and verify that 
+
+$$\begin{multline}
+  \ln \left( \frac{Y}{L} \right) =
+  \log A(0) + gt + 
+  \frac{\alpha}{1 - \alpha - \beta} \ln (s_k) \\ + 
+  \frac{\beta}{1 - \alpha - \beta} \ln (s_h) - 
+  \frac{\alpha + \beta}{1 - \alpha - \beta} \ln (\delta + g + n)
+\end{multline}$$
+
+
+---
+
+## Convergence to the steady state
+
+When we studied the Solow model, we justfied our strategy to focus on the steady state because the economy eventually converges to the steady state regardless of the initial capital. 
+
+The MRW model too has this property. Please verify this by using the phase diagram. See the Problem Set for today for details.
+
+---
+
+## Model 1: Decomposition of Y/L, Eq. (11)
+
+$$\begin{multline}
+  \ln \left( \frac{Y}{L} \right) =
+  \log A(0) + gt + 
+  \frac{\alpha}{1 - \alpha - \beta} \ln (s_k) \\ + 
+  \frac{\beta}{1 - \alpha - \beta} \ln (s_h) - 
+  \frac{\alpha + \beta}{1 - \alpha - \beta} \ln (\delta + g + n)
+\end{multline}$$
+
+* The coefficient, $\alpha / (1-\alpha-\beta)$ on $\ln (s_k)$ is greater 
+  than $\alpha / (1 - \alpha)$ because $1 - \alpha > \beta > 0$
+* The coefficient on $\ln (\delta + g + n)$ is larger in absolute value 
+  than the coefficient on $\ln (s_k)$ i.e.,
+  $$\frac{\alpha}{1 - \alpha - \beta} < \frac{\alpha + \beta}{1 - \alpha - \beta}$$
+  
+
+---
+
+## Model 2: Another decomposition, Eq. (12) 
+
+$$\begin{multline}
+  \ln\left(\frac{Y}{L}\right) = 
+  \ln A(0)+gt+\frac{\alpha}{1-\alpha}\ln(s_{k}) \\ -
+  \frac{\alpha}{1-\alpha}\ln(\delta+g+n)+\frac{\beta}{1-\alpha}\ln(h^{*})
+\end{multline}$$
+
+This specification is almost identical to the Solow model.
+
+The bias in the linear regression for the baseline model may well be due to the omitted variable. By omitting $\ln(h^{*})$ term, 
+the previous linear regression is subject to omitted-variable bias because higher $h^*$ results in 
+
+* higher $s_k$ (e.g., by improving sense of economy)
+* lower $n$ (e.g., by increasing cost of marriage)
+
+---
+
+## Model Choice made by MRW
+
+Which of $s_h$ and $h^*$ is easier to measure?
+
+As a proxy for $s_h$, MRW measured the percentage of the working-age population 
+that is in secondary school. 
+
+$$\begin{multline}
+\texttt{SCHOOL} =
+\frac{\text{# of people in secondary school}}{\text{# of people aged 12-17}}\\
+\times
+\frac{\text{school age population (15-19)}}{\text{working age population}}
+\end{multline}$$
+
+Then they used this variable to test Model 1. 
+
+
+---
+
+
+```{r, echo=FALSE, out.width="600px"}
+knitr::include_graphics("images/mrw-table2.png")
+```
+
+---
+
+## Coefficients
+
+
+$$\begin{aligned}
+  \frac{\alpha}{1 - \alpha - \beta} 
+    &\simeq 0.70\\
+  \frac{\beta}{1 - \alpha - \beta}
+    &\simeq 0.73\\
+  \frac{\alpha + \beta}{1 - \alpha - \beta}
+    &\simeq -1.50
+\end{aligned}$$
+
+These estimates suggest
+
+$$\alpha \simeq 0.3 \quad \text{and}\quad \beta \simeq 0.3$$
+
+Consistent with the common wisdom.
+
+
+---
+
+`r section("Preliminary for the next step")`
+
+---
+
+## Question
+
+Suppose that you have just heard that your tax you had already paid 
+(say, 10,000 Yen) will be reimbursed next month.
+
+What would you do with the expected windfall gains?
+
+1. Nothing. Wait until you have the cash.
+2. Go shopping or go for a drink this weekend, expecting the refund. 
+
+
+---
+
+
+## Why Solow not enough?
+
+In the Solow model, **the saving rate is exogenous**. Take a tax reduction 
+for example. In the Solow model, consumers raises consumption at the time 
+of enforcement of the new tax system.
+
+But usually governments would inform the change of tax well before the enforcement and we might drink a toast to the tax reduction.
+
+Similarly, in case of tax hike, it is possible that consumers consume
+more immediately after knowing that they will have to pay more to the
+government.
+
+---
+
+## Why Solow not enough? (Cont'd)
+
+So, the Solow model is missing an important aspect of our economic activity: **Expectation formation**.
+
+Although rigorously dealing with the problem of expectations is beyond the scope of this 
+course, the **Ramsey model** will serve as the skeleton of more elaborate models.
+
+
+
+
+
