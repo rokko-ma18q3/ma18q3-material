@@ -1,0 +1,362 @@
+---
+title: "Ramsey Model"
+author: "Kenji Sato"
+date: 'Day 09'
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    css: 
+      - "../asset/remark-css/style.css"
+    lib_dir: libs
+    nature:
+      countIncrementalSlides: no
+      highlightLines: yes
+      highlightStyle: github
+subtitle: Macroeconomics
+header-includes: <script src="https://use.fontawesome.com/b5f301ecca.js"></script>
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = 'center')
+source("../R/utils.R")
+library(tidyverse)
+```
+
+
+`r section("Departure from the Solow model")`
+
+---
+
+## Question
+
+Suppose that you have just heard that your tax you had already paid 
+(say, 10,000 Yen) will be reimbursed next month.
+
+What would you do with the expected windfall gains?
+
+1. Nothing. Wait until you have the cash.
+2. Go shopping or go for a drink this weekend, expecting the refund. 
+
+
+---
+
+
+## Why Solow not enough?
+
+In the Solow model, **the saving rate is exogenous**. Take a tax reduction 
+for example. In the Solow model, consumers raises consumption at the time 
+of enforcement of the new tax system.
+
+But usually governments would inform the change of tax well before the 
+enforcement and we might drink a toast to the tax reduction.
+
+Similarly, in case of tax hike, it is possible that consumers consume
+less immediately after knowing that they will have to pay more to the
+government.
+
+---
+
+## Why Solow not enough? (Cont'd)
+
+So, the Solow model is missing an important aspect of our economic activity: **Expectation formation**.
+
+Although rigorously dealing with the problem of expectations is beyond the scope of this 
+course, the **Ramsey model** will serve as the skeleton of more elaborate models.
+
+---
+
+## Is saving rate constant independent of income?
+
+Evidence suggests that the saving rate on current income is roughly 
+increasing in income. (e.g., [Dynan, Skinner and Zeldes 2004](http://www.journals.uchicago.edu/doi/abs/10.1086/381475))
+
+The more you earn, the lower the fraction of spending gets (the higher the fraction of saving gets).
+
+The Solow assumption,
+
+$$S = sY$$
+
+with constant $s$, might be critical to the predictions by 
+the Solow model.
+
+---
+
+## Note
+
+In the following discussion, we will follow the following 
+rule to choose symbols. For example,
+
+* Upper-case = Aggregate variables
+    - $C$: aggregate consumption
+    - $K$: total capital
+* Lower-case = Per-capita variables
+    - $c$: consumption per capita
+    - $k$: capital per capita
+* Lower-case with hat = Per unit of effective labor 
+    - $\hat{\!c}$: consumption per unit of effective labor
+    - $\hat{\!k}$: capital per unit of effective labor
+
+---
+
+`r section("Ramsey model")`
+
+---
+
+## Endogenize consumption-saving behavior
+
+Each individual decides when and how much to consume 
+by solving the utility maximization: 
+
+$$\max \int_0^\infty e^{-\rho t} u(c(t))dt$$
+subject to
+$$c(t) + \dot{s}(t) = r(t) s(t)  + w(t)$$
+
+For the moment let's suppose no population growth ($n = 0$)
+
+
+---
+
+## Instantaneous utility: $u$
+
+At time $t$, a representative consumer consumes
+
+$$c(t).$$
+
+From the consumption, they get utility at that time
+
+$$u(c(t))$$
+
+$u$ is increasing with $c$ and has diminishing marginal utility.
+
+$$u' > 0 \quad \text{and}\quad u'' < 0$$
+
+---
+
+## Discount
+
+If you have a choice, which would you choose?
+
+* $100 given now 
+* $100 given in one month
+
+Or, you might be indifferent.
+
+---
+
+## Discount (cont'd)
+
+Future consumption, anticipated now, is discounted because 
+you must wait.
+
+The same amount of consumption, $\bar c$, enjoyed at different 
+time points, gives higher _present_ utility (measured at $t = 0$), 
+when the consumption takes place in the nearer future.
+
+
+---
+
+## Exponential discounting $\rho > 0$
+
+We assume that the consumers have discounted instantaneous utility 
+of the following form:
+
+$$e^{- \rho t} u(c),$$
+
+where $\rho > 0$ is called the discount rate.
+
+How strongly the consumers discount the future utility is 
+controlled by a new parameter $\rho > 0$.
+
+---
+
+## Quiz
+
+$$e^{-\rho t} u(c)$$
+
+Which is a correct statement?
+
+* Consumers with High $\rho$ are more patient than 
+  those with Low $\rho$. 
+* Consumers with Low $\rho$ are more patient than 
+  those with High $\rho$.
+  
+  
+---
+
+## Total utility
+
+Given the representative consumer's consumption stream,
+
+$$t \mapsto c(t),$$
+
+they expect the total utility
+
+$$\int_0^\infty e^{-\rho t} u(c(t))dt$$
+
+From two consumption streams, $c'$ and $c''$, they choose $c'$ if 
+
+$$\int_0^\infty e^{-\rho t} u(c'(t))dt \ge
+\int_0^\infty e^{-\rho t} u(c''(t))dt$$
+
+---
+
+## Maximization problem
+
+The consumer chooses the best consumption stream that miximize 
+the total utility:
+
+$$\max \int_0^\infty e^{-\rho t} u(c(t))dt$$
+
+The consumer doesn't have the luxury of choosing their consumption 
+stream completely freely.
+
+---
+
+## Budget constraint
+
+#### Cash inflow
+
+* He/she supplies one unit of labor and earns $w(t)$.
+* Each indiviual earns interest income, $r(t) s(t)$, from 
+  his/her savings, $s(t)$. $r(t)$ is the interest rate.
+
+#### Cash outflow
+
+* Consumption $c(t)$.
+* The amount of saving/dissaving at time $t$ is $\dot{s}(t)$. 
+  $\dot{s}(t) > 0$ when depositing, $\dot{s}(t) < 0$
+  when withdrawal.
+
+
+---
+
+## Budget constraint
+
+At any point in time, $c$ must satisfy the following **flow budget constraint**: 
+
+$$c(t) + \dot{s}(t) = r(t) s(t)  + w(t),$$
+
+subject to which the consumer solves the problem
+
+$$\max \int_0^\infty e^{-\rho t} u(c(t))dt$$
+
+---
+
+## No-Ponzi Game condition
+
+$$c(t) + \dot{s}(t) = r(t) s(t)  + w(t)$$
+
+Since $\dot{s}$ can be negative, they can borrow money to consume 
+more than they earn.
+
+What if they could borrow as much money they you wanted and had no obligation 
+to pay back?
+
+They would increase consumption to get more utility from consumption, 
+resulting in infinitely large utility. We must assume some condition to 
+avoid this possibility.
+
+
+---
+
+## Integrated flow budget constraint
+
+From the flow budget constraint, we have 
+
+$$e^{- R(t)} c(t) + e^{-R(t)}  \dot{s}(t) =
+e^{-R(t)} r(t) s(t) + e^{-R(t)} w(t),$$
+where
+$$R(t) = \int_0^t r(s)ds \Longrightarrow \dot{\!R}(t) = r(t)$$
+
+Integrate both side to get 
+
+$$\begin{multline}
+\int_0^\infty e^{-R(t)} c(t) dt + 
+\int_0^\infty e^{-R(t)}  \dot{s}(t) dt\\ =
+\int_0^\infty e^{-R(t)} r(t) s(t) dt + 
+\int_0^\infty e^{-R(t)} w(t) dt,
+\end{multline}$$
+
+---
+
+## Integrated flow budget constraint (cont'd)
+
+Notice that 
+
+$$\begin{aligned}
+\int_0^\infty e^{- R(t)} \dot{s}(t)dt =
+  \lim_{t \to \infty} e^{- R(t)} s(t) - s(0) + 
+  \int_0^\infty r(t) e^{- R(t)} s(t) dt
+\end{aligned}$$
+by integration by parts formula.
+
+We get 
+
+$$\int_0^\infty e^{- R(t)} c(t) dt + 
+  \lim_{t \to \infty} e^{- R(t)} s(t) = 
+  s(0) + \int_0^\infty e^{-R(t)} w(t) dt$$
+
+---
+
+## No-Ponzi Game condition, mathematically stated
+
+$$\int_0^\infty e^{- R(t)} c(t) dt + 
+  \lim_{t \to \infty} e^{- R(t)} s(t) = 
+  s(0) + \int_0^\infty e^{-R(t)} w(t) dt$$
+  
+If it holded that 
+
+$$\lim_{t \to \infty} e^{- R(t)} s(t) < 0$$
+the consumers can consume more than they earn over their life time.
+
+It might be natural to assume 
+
+$$\lim_{t \to \infty} e^{- R(t)} s(t) \ge 0$$
+
+---
+
+## Life-time budget constraint
+
+$$\int_0^\infty e^{- R(t)} c(t) dt = 
+  s(0) + \int_0^\infty e^{-R(t)} w(t) dt$$
+
+This constraint is called **life-time budget constraint**.  
+
+* The right hand-side is initial asset plus discounted sum of labor 
+  income;
+* left hand-side the discounted sum of life-time consumption. 
+
+
+---
+
+## Consumption maximization restated
+
+We can restate the consumer's problem to 
+
+$$\max \int_0^\infty e^{-\rho t} u(c(t))dt$$
+
+subject to
+
+$$\int_0^\infty e^{- R(t)} c(t) dt = 
+  s(0) + \int_0^\infty e^{-R(t)} w(t) dt$$
+
+Remark: In Romer's textbook, a solution method using a Lagrangian for this optimization problem
+is discussed. We will instead study the Hamiltonian method applied to the original problem. 
+The latter technique will turn out to be useful when you read research papers.
+
+---
+
+## Dynamics of the model
+
+We will analyze the development of two endogenous variables $\hat{k}$ and $\hat{c}$
+governed by the two-dimensional differential equation.
+
+$$\begin{aligned}
+  \dot{\hat{k}} &= f\left(\hat{k}\right) - 
+    \hat{c} - (\delta + g + n)\hat{k}\\
+  \dot{\hat{c}} &= \text{(see it later)}
+\end{aligned}$$
+
+Let's do the problem for today as an exercise.
+
+
