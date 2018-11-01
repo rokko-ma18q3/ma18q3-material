@@ -1,0 +1,323 @@
+---
+title: "Ramsey Model: Consumer Behavior"
+author: "Kenji Sato"
+date: 'day 10'
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    css: 
+      - "../asset/remark-css/style.css"
+    lib_dir: libs
+    nature:
+      countIncrementalSlides: no
+      highlightLines: yes
+      highlightStyle: github
+subtitle: Macroeconomics
+header-includes: <script src="https://use.fontawesome.com/b5f301ecca.js"></script>
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = 'center')
+source("../R/utils.R")
+library(tidyverse)
+```
+
+
+`r section("Consumer Behavior")`
+
+---
+
+## Consumer Optimization
+
+Each individual decides when and how much to consume 
+by solving the utility maximization: 
+
+$$\max \int_0^\infty e^{-\rho t} u(c(t))dt$$
+subject to
+$$c(t) + \dot{\! s}(t) = r(t) s(t)  + w(t)$$
+
+From the perspective of the consumer, $r(t)$ and $w(t)$ are given.
+
+---
+
+## Trade-off between consumption and saving
+
+The Ramsey model is a problem of intertemporal resource allocation.
+**You need to sacrifice future consumption to consume today**.
+
+$$c(t) + \dot{\! s}(t) = r(t) s(t)  + w(t)$$
+
+It is possible to increase the amount of consumption, $c(t)$, at any point in time by 
+reducing saving, $\dot s(t)$, at the same moment. 
+
+Since $\dot s(t) < 0$ is allowable (withdrawal), $c(t)$ can be arbitrarily large,
+at least in the short run.
+
+---
+## Trade-off between consumption and saving (cont'd)
+
+If $\dot s(t)$ is large and negative for a long time, however, the amount of 
+future assest will also be large and negative. This results in the reduced 
+consumption in the future because the representative agent cannot continue 
+to roll over debt forever. (NPG condition.)
+
+The solution to the dynamic optimization problem is typically 
+expressed as a differential equation.
+
+---
+
+`r section("Hamiltonian Approach")`
+
+---
+
+## General Setting
+
+Consider the following problem	(somewhat more abstract than the Ramsey problem.)
+
+$$\begin{aligned}
+    &\max_{x, y}\int_{0}^{\infty}F(t, x(t), y(t))dt \\
+    &\text{subject to} \\
+    &\qquad\dot{x}=G(t, x(t), y(t)), \\
+    &\qquad x(0):\ \text{given,}
+\end{aligned}$$
+
+* $x$ is the stock (state) variable
+* $y$ is the flow (control) variable
+
+---
+
+## Hamiltonian
+
+$$\max_{x, y}\int_{0}^{\infty}F(t, x(t), y(t))dt \quad 
+\text{subj. to}\quad \dot{x}=G(t, x(t), y(t))$$
+
+
+The Hamiltonian (or less ambiguously, present-value Hamiltonian) 
+is the following function. 
+
+$$\mathcal{H}(t, x, y, \lambda) = F(t, x, y) + \lambda G(t, x, y),$$
+
+where $\lambda$ is a multiplier.
+
+---
+
+## Hamiltonian (cont'd)
+
+Hamiltonian can be rewritten as
+
+$$\mathcal{H}(t, x, y, \lambda) = F(t, x, y) + \lambda \dot{\!x}.$$
+
+The first term is the flow return, like utility from consumption, etc.
+at some point in time.
+
+The second term, on the other hand, is the value gained from increased stock. $\lambda$ can be interpreted as the price of the stock of the
+state variable $x$.
+
+The Hamiltonian expresses the intertemporal substitution between 
+now and later. 
+
+---
+
+## Canonical Equations
+
+The solution of the problem must satisfy (necessary condition)
+the following equations:
+
+$$\begin{aligned}
+  \frac{\partial\mathcal{H}}{\partial y}	&= 0 \\
+  \dot{\lambda}	&=-\frac{\partial\mathcal{H}}{\partial x},\\
+  \dot{x}	&= \frac{\partial\mathcal{H}}{\partial\lambda}.
+\end{aligned}$$
+
+We do not follow the proof here. Interested students can consult 
+Acemoglu (2009).
+
+---
+
+## Canonical Equation 3
+
+The third condition 
+
+$$\dot{x}	= \frac{\partial\mathcal{H}}{\partial\lambda}$$
+is obvious becuase this is equivalent to the constraint.
+
+---
+
+## Canonical Equation 1
+
+The first condition
+
+$$\frac{\partial\mathcal{H}}{\partial y}	= 0$$
+
+is less obvious but it states that control $y$ must be chosen 
+so that the Hamiltonian is maximized at any point in time.
+
+---
+
+## Canonical Equation 2
+
+An increase in $x$ changes the current flow return plus the value of stock by 
+
+$$\frac{\partial \mathcal H}{\partial x} = 
+\frac{\partial F}{\partial x} + \lambda \frac{\partial G}{\partial x}$$
+
+Increased stock will be depreciated by the amount 
+
+$$- \dot{\! \lambda}$$
+
+In the optimum, the depreciation must be fully covered by the increased value.
+
+$$\dot{\lambda}	= -\frac{\partial\mathcal{H}}{\partial x}$$
+
+---
+
+`r section("Solving the Ramsey problem")`
+
+---
+
+## Ramsey problem
+
+Compare 
+
+$$\max_{s,c} \int_0^\infty e^{-\rho t} u(c(t))dt \quad \text{subj. to}\quad 
+c(t) + \dot{\! s}(t) = r(t) s(t)  + w(t)$$
+
+with 
+
+$$\max_{x, y}\int_{0}^{\infty}F(t, x(t), y(t))dt \quad 
+\text{subj. to}\quad \dot{x}=G(t, x(t), y(t))$$
+
+
+What are the equivalents for $F$, $G$, $x$, and $y$ in the Ramsey problem?
+
+---
+
+## Ramsey problem (cont'd)
+
+Stock and flow
+
+$$x \longleftrightarrow s, \qquad
+y \longleftrightarrow c$$
+
+Objective
+
+$$F(t, x, y) \longleftrightarrow F(t, s, c) = e^{-\rho t} u(c)$$
+Constraint
+$$G(t, x, y) \longleftrightarrow G(t, s, c) = rs  + w - c$$
+
+---
+
+## Hamiltonian and canonical equations
+
+$$\mathcal H =
+e^{-\rho t} u(c) + \lambda (rs + w - c)$$
+
+#### Deriv. w.r.t flow is zero
+
+$$\frac{\partial H}{\partial c} = e^{-\rho t} u'(c) - \lambda = 0.$$
+
+#### Depreciation of stock = deriv. w.r.t. stock
+
+$$\dot \lambda = - \frac{\partial H}{\partial s} = - \lambda r$$
+
+#### Constraint
+
+$$\dot{\! s}(t) = r(t) s(t)  + w(t)$$
+
+
+---
+
+## Euler condition
+
+From 
+
+$$\begin{aligned}
+  \lambda = e^{-\rho t} u'(c),
+\end{aligned}$$
+
+we obtain
+
+$$\begin{aligned}
+  \frac{\dot{\! \lambda}}{\lambda} 
+  = 
+  -\rho + \frac{\dot{\! c} u''(c)}{u'(c)}
+\end{aligned}$$
+
+Since $\dot{\lambda}/\lambda = -r$ by another canonical equation, 
+we have 
+
+$$\begin{aligned}
+  \frac{\dot{\! c} u''(c)}{u'(c)} = \rho - r
+\end{aligned}$$
+
+
+---
+
+## Euler condition
+
+By rearranging,
+
+$$\begin{aligned}
+  \dot{\! c} = \frac{u'(c) (r - \rho)}{- u''(c)}
+\end{aligned}$$
+
+This equation, the Euler equation, determines the plan of consumption.
+
+---
+
+## Relative risk aversion
+
+Let the coefficient for the relative risk aversion be denoted as  
+
+$$\Theta(c) = - \frac{c u''(c)}{u'(c)}$$
+
+The Euler equation can be rewritten as 
+
+$$\begin{aligned}
+  \frac{\dot{\! c}}{c}
+  = 
+  \frac{r - \rho}{\Theta(c)}
+\end{aligned}$$
+
+The larger $\Theta (c)$ is, the larger the curverture of 
+the utility function gets. A consumer with large $\Theta$ 
+has stronger incentive to smooth theier consumption stream than 
+those with small $\Theta$. 
+
+---
+
+## Constant relative risk aversion
+
+In practice, we use CRRA utility function very often.
+
+$$u(c) = 
+\frac{c^{1 - \theta} - 1}{1 - \theta},$$
+
+where $\theta$ is a positive parameter.
+
+* Show that $\Theta(c) = \theta$ for all $c$.
+* Show that when $\theta = 1$, $u(c) = \ln c$.
+
+
+---
+
+## Euler equation and capital accumulation
+
+We have 
+
+$$\begin{aligned}
+  \frac{\dot c}{c} = \frac{r - \rho}{\theta}
+\end{aligned}$$
+
+From the firms' profit optimization, this is equivalent to
+
+$$\begin{aligned}
+  \frac{\dot c}{c} = \frac{f'(k) - \delta - \rho}{\theta}
+\end{aligned}$$
+
+The dynamics of the Ramsey economy is determined by this differential equation, 
+together with the capital accumulation equation (recall $g = n = 0$)
+
+$$\begin{aligned}
+  \dot k = f(k) - c - \delta k
+\end{aligned}$$
