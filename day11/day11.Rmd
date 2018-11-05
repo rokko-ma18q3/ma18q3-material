@@ -1,0 +1,827 @@
+---
+title: "Ramsey Model (continued)"
+author: "Kenji Sato"
+date: 'day 11'
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    css: 
+      - "../asset/remark-css/style.css"
+    lib_dir: libs
+    nature:
+      countIncrementalSlides: no
+      highlightLines: yes
+      highlightStyle: github
+    pandoc_args: [
+      "--include-before-body", "../asset/mathjax-macro.md"
+    ]
+subtitle: Macroeconomics
+header-includes: <script src="https://use.fontawesome.com/b5f301ecca.js"></script>
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = 'center')
+source("../R/utils.R")
+library(tidyverse)
+```
+
+<div style="margin-top: -2em"></div>
+
+## Exogenous variables
+
+$H =$ constant number of households in the economy, $L =$ total population. $L /H =$ number of the members of each household.
+
+Population growth
+
+$$\dot{L} = n L$$
+
+Technical growth
+
+$$\dot{A} = g A$$
+
+---
+
+`r section("consumers")`
+
+---
+
+## Consumer Behavior: Objective
+
+Consumers act altruistically. They care not only about 
+their own consumption but also about offspring's.
+
+Each household maximizes the total utility: 
+
+$$\max \int_0^\infty e^{-\rho t} u(c(t)) \frac{L(t)}{H} dt$$
+
+---
+
+## Consumer Behavior: Budget constraint
+
+Let $s(t)$ be the savings of each family member.
+They are subject to the following flow budget constraint:
+
+$$c(t) \frac{L(t)}{H} + \frac{d}{dt}\left( s(t)\frac{L(t)}{H} \right) = r(t) s(t)\frac{L(t)}{H}  + w(t)\frac{L(t)}{H}$$
+
+When new members are born, the existing members transfer their savings so that 
+each member has equal amount. Equivalently, 
+
+$$c(t) +  \dot s(t) = (r(t) - n) s(t)  + w(t)$$
+
+Notice that per-person share of the interest income is reduced by the factor of population growth rate. (You will see $r - n$ term later.)
+
+---
+
+## Consumer Behavior: First-order condition
+
+The representative household solves the following maximization problem:
+
+$$\max \int_0^\infty e^{-(\rho-n) t} u(c(t)) dt$$
+subject to 
+
+$$c(t) +  \dot s(t) = (r(t) - n) s(t)  + w(t)$$
+
+
+**Problem: Set up the Hamiltonian. (3min)**
+
+---
+
+## Consumer Behavior: Canonical Equations
+
+$$\mathcal H =
+e^{-(\rho-n) t} u(c(t)) + \lambda(t) \left[
+  (r(t)-n) s(t)  + w(t) - c(t)
+\right]$$
+
+
+**Problem: Compute the canonical equations. (5min)**
+
+1. $\partial \mathcal H / \partial c = 0$
+2. $\dot{\lambda} = - \partial \mathcal H / \partial s$
+3. $\dot{s} = \partial \mathcal H / \partial \lambda$
+
+---
+
+## Consumer Behavior: Euler equation
+
+**Problem: Derive the Euler equation. (5min)**
+
+$$\begin{aligned}
+  \frac{\dot{c}(t)}{c(t)} = 
+  \frac{r(t) - \rho}{\Theta(c)} 
+\end{aligned}$$
+
+Under the assumption of CRRA utility 
+
+$$u(c) = \frac{c^{1 - \theta} - 1}{1 - \theta},\quad \theta > 0$$
+
+the Euler equation is expressed as
+
+$$\begin{aligned}
+  \frac{\dot{c}(t)}{c(t)} = 
+  \frac{r(t) - \rho}{\theta} 
+\end{aligned}$$
+
+---
+
+## Euler equation for $C/(AL)$
+
+Define the consumption per unit of effective labor:
+
+$$\hat{c} = \frac{c}{A} = \frac{C}{AL}$$
+
+Since $A$ grows exogenously with a constant growth rate $g$, 
+
+$$\frac{\dot{\hat{c}}}{\hat{c}} = \frac{\dot{c}(t)}{c(t)} - g$$
+
+We therefore have 
+
+$$\frac{\dot{\hat{c}}}{\hat{c}} =
+\frac{r(t) - \rho - \theta g}{\theta}$$
+
+---
+
+## Assumption
+
+For 
+
+$$\max \int_0^\infty e^{-\rho t} \frac{c^{1-\theta}-1}{1-\theta} \frac{L(t)}{H} dt$$
+
+to give finite utility along a balanced growth path, we impose
+
+
+$$\rho > n \quad \text{and}\quad -(\rho-n)+(1-\theta)g<0$$
+or
+
+$$\rho - n > \max \{ 0, (1-\theta)g\}$$
+
+---
+
+`r section("firms")`
+
+---
+
+## Firm behavior: Production function
+
+Let's describe the behavior of the firms.
+
+This is mostly equivalent to the setup of the Solow model.
+
+The firms have access to the CRS production technology 
+
+$$Y(t) = F(K(t), A(t) L(t)).$$
+
+In per-$AL$ term,
+
+$$\hat{y}(t) = f\left(\hat{k} (t)\right) = 
+\frac{F(K, AL)}{AL}$$
+
+
+---
+
+## Firm behavior: Profit maximization
+
+Rent
+
+$$r(t) + \delta = f'\left( \hat{k}(t) \right)$$
+
+Wage
+
+$$w(t) = A(t) \left[
+  f\left( \hat{k}(t) \right) - \hat{k}(t) f'\left( \hat{k}(t) \right)
+\right]$$
+
+Wage per effective labor
+
+$$\hat{w}(t) = f\left( \hat{k}(t) \right) - \hat{k}(t) f'\left( \hat{k}(t) \right)$$
+
+
+---
+
+## Equilibrium: Capital Accumulation
+
+The capital market clearing condition:
+
+$$s(t) L(t) = K(t)$$
+
+
+The flow budget constraint
+
+$$c(t) + \dot{s}(t) = (r(t) - n) s(t)  + w(t)$$
+
+is transformed into 
+
+$$\frac{\dot{\hat{k}}}{\hat{k}} =
+\frac{\dot s}{s} - g = 
+\frac{f\left(\hat{k}\right) - \hat{c} - (\delta + g + n) \hat{k}}{\hat{k}}$$
+
+---
+
+## Equilibrium: First-order Dynamics
+
+We have the following capital accumulation equation:
+
+$$\dot{\hat{k}} = f\left(\hat{k}\right) - \hat{c} - (\delta + g + n) \hat{k}$$
+
+The dynamics of the Ramsey model is determined by this capital 
+accumulation equation together with 
+the Euler equation:
+
+$$\frac{\dot{\hat{c}}}{\hat{c}} =
+\frac{f'\left(\hat{k}\right) - \delta - \rho - \theta g}{\theta}$$
+
+
+
+---
+
+## Locus for $\dot{\hat{k}} = 0$
+
+Let's derive the condition under which $\dot{\hat{k}} = 0$.
+
+From the capital accumulation equation,
+
+$$\dot{\hat{k}} = f\left(\hat{k}\right) - \hat{c} - (\delta + g + n) \hat{k},$$
+we obtain
+
+$$\begin{aligned}
+  \dot{\hat{k}} = 0 
+  \Leftrightarrow
+  \hat{c} = f\left(\hat{k}\right) - (\delta + g + n) \hat{k}
+\end{aligned}$$
+
+---
+
+## Regions for $\dot{\hat{k}} > 0$ and $\dot{\hat{k}} < 0$
+
+Moreover,
+
+$$\begin{aligned}
+  \dot{\hat{k}} > 0 
+  \Leftrightarrow
+  \hat{c} < f\left(\hat{k}\right) - (\delta + g + n) \hat{k}
+\end{aligned}$$
+and
+
+$$\begin{aligned}
+  \dot{\hat{k}} < 0 
+  \Leftrightarrow
+  \hat{c} > f\left(\hat{k}\right) - (\delta + g + n) \hat{k}
+\end{aligned}$$
+
+$\dot{\hat{k}}$ is increasing below the $\dot{\hat{k}} = 0$ locus
+and decreasing above the locus.
+
+---
+
+## Regions for $\dot{\hat{k}} > 0$ and $\dot{\hat{k}} < 0$ (cont'd)
+
+You can rewrite these conditions as below:
+
+$$\begin{aligned}
+  \dot{\hat{k}} \gtreqless 0 
+  \Longleftrightarrow
+  f\left(\hat{k}\right) - \hat{c} \gtreqless (\delta + g + n) \hat{k}
+\end{aligned}$$
+
+Capital increases if and only if the investment, 
+$f(\hat{k}) - \hat{c}$, is greater than the break-even level,
+$(\delta + g + n)\hat{k}$.
+
+This condition is exactly what you have already encountered in the 
+analysis of the Solow model.
+
+---
+
+
+## Locus for $\dot{\hat{c}} = 0$
+
+From 
+
+$$\frac{\dot{\hat{c}}}{\hat{c}} =
+\frac{f'\left(\hat{k}\right) - \delta - \rho - \theta g}{\theta}$$
+
+we can derive the locus on which $\dot{\hat{c}} = 0$.
+
+$$\dot{\hat{c}} = 0
+\Longleftrightarrow
+f'\left( \hat{k} \right) = \delta + \rho + \theta g$$
+
+---
+
+## Regions for $\dot{\hat{c}} > 0$ and $\dot{\hat{c}} < 0$
+
+Obviously,
+
+$$\dot{\hat{c}} \gtreqless 0
+\Longleftrightarrow
+f'\left( \hat{k} \right) \gtreqless \delta + \rho + \theta g$$
+
+Since $f'$ is a decreasing function of $\hat{k}$,
+
+$$\dot{\hat{c}} \gtreqless 0
+\Longleftrightarrow
+\hat{k} \lesseqgtr (f')^{-1}\left(\delta + \rho + \theta g\right)$$
+
+Let's define 
+
+$$\hat{k}^* =  (f')^{-1}\left(\delta + \rho + \theta g\right)$$
+
+---
+
+## Regions for $\dot{\hat{c}} > 0$ and $\dot{\hat{c}} < 0$ (cont'd)
+
+Recall $f'(\hat{k}) - \delta = r$. The first-order condition for the 
+consumption is easy to grasp when $g = 0$. 
+
+$$\dot{\hat{c}} \gtreqless 0
+\Longleftrightarrow
+r \gtreqless \rho + \theta\cdot 0$$
+
+When benefit from waiting $r$ is greater than utility cost of waiting $\rho$, it's best to defer consuming. Thus, increasing consumption ($\dot{\hat c} > 0$)
+
+When $g \neq 0$, an additional term is needed to adjust
+for technology change. 
+
+---
+
+`r section('Optimal Dynamics')`
+
+---
+
+## Additional assumption
+
+Recall the objective function: 
+
+$$\max \int_0^\infty e^{-(\rho - n) t} u(c(t)) dt,$$
+where 
+$$u(c) = \frac{c^{1 - \theta} - 1}{1 - \theta}.$$
+
+Obviously, we have to assume $\rho - n > 0$. In the following analysis
+we assume a slightly stronger condition:
+
+$$\rho - n > \max \{ 0, (1-\theta)g\}$$
+
+
+---
+
+## Equilibrium: First-order Dynamics
+
+The dynamics of the Ramsey model is determined by the following
+two differential equations.
+
+
+Capital accumulation equation:
+
+$$\dot{\hat{k}} = f\left(\hat{k}\right) - \hat{c} - (\delta + g + n) \hat{k}$$
+
+Euler equation:
+
+$$\frac{\dot{\hat{c}}}{\hat{c}} =
+\frac{f'\left(\hat{k}\right) - \delta - \rho - \theta g}{\theta}$$
+
+---
+
+## Locus of $\dot{\hat{k}} = 0$
+
+Let's derive the condition under which $\dot{\hat{k}} = 0$.
+
+From the capital accumulation equation,
+
+$$\dot{\hat{k}} = f\left(\hat{k}\right) - \hat{c} - (\delta + g + n) \hat{k},$$
+we obtain
+
+$$\begin{aligned}
+  \dot{\hat{k}} = 0 
+  \Leftrightarrow
+  \hat{c} = f\left(\hat{k}\right) - (\delta + g + n) \hat{k}
+\end{aligned}$$
+
+---
+
+## Regions for $\dot{\hat{k}} > 0$ and $\dot{\hat{k}} < 0$
+
+Moreover,
+
+$$\begin{aligned}
+  \dot{\hat{k}} > 0 
+  \Leftrightarrow
+  \hat{c} < f\left(\hat{k}\right) - (\delta + g + n) \hat{k}
+\end{aligned}$$
+and
+
+$$\begin{aligned}
+  \dot{\hat{k}} < 0 
+  \Leftrightarrow
+  \hat{c} > f\left(\hat{k}\right) - (\delta + g + n) \hat{k}
+\end{aligned}$$
+
+$\dot{\hat{k}}$ is increasing below the $\dot{\hat{k}} = 0$ locus
+and decreasing above the locus.
+
+---
+
+## Regions for $\dot{\hat{k}} > 0$ and $\dot{\hat{k}} < 0$ (cont'd)
+
+You can rewrite these conditions as below:
+
+$$\begin{aligned}
+  \dot{\hat{k}} \gtreqless 0 
+  \Longleftrightarrow
+  f\left(\hat{k}\right) - \hat{c} \gtreqless (\delta + g + n) \hat{k}
+\end{aligned}$$
+
+Capital increases if and only if the investment, 
+$f(\hat{k}) - \hat{c}$, is greater than the break-even level,
+$(\delta + g + n)\hat{k}$.
+
+This condition is exactly what you have already encountered in the 
+analysis of the Solow model.
+
+---
+
+## Phase diagram
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.001.jpeg")
+```
+
+---
+
+## Golden Rule
+
+Notice that the curve has a unique maximum, $\hat{k}_G$, where 
+
+$$f'\left(\hat{k}_G \right) = \delta + g + n$$
+
+must hold.
+
+In the Solow model, the steady state that satisfies this 
+condition is called the Golden Rule steady state, at which 
+the consumption level is maximized over all steady states.
+
+---
+
+## Golden Rule (cont'd)
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.002.jpeg")
+```
+
+---
+
+## Locus of $\dot{\hat{c}} = 0$
+
+From 
+
+$$\frac{\dot{\hat{c}}}{\hat{c}} =
+\frac{f'\left(\hat{k}\right) - \delta - \rho - \theta g}{\theta}$$
+
+we can derive the locus on which $\dot{\hat{c}} = 0$.
+
+$$\dot{\hat{c}} = 0
+\Longleftrightarrow
+f'\left( \hat{k} \right) = \delta + \rho + \theta g$$
+
+---
+
+## Regions for $\dot{\hat{c}} > 0$ and $\dot{\hat{c}} < 0$
+
+Obviously,
+
+$$\dot{\hat{c}} \gtreqless 0
+\Longleftrightarrow
+f'\left( \hat{k} \right) \gtreqless \delta + \rho + \theta g$$
+
+Since $f'$ is a decreasing function of $\hat{k}$,
+
+$$\dot{\hat{c}} \gtreqless 0
+\Longleftrightarrow
+\hat{k} \lesseqgtr (f')^{-1}\left(\delta + \rho + \theta g\right)$$
+
+Let's define 
+
+$$\hat{k}^* =  (f')^{-1}\left(\delta + \rho + \theta g\right)$$
+
+---
+
+## Regions for $\dot{\hat{c}} > 0$ and $\dot{\hat{c}} < 0$ (cont'd)
+
+Recall $f'(\hat{k}) - \delta = r$. The first-order condition for the 
+consumption is easy to grasp when $g = 0$. 
+
+$$\dot{\hat{c}} \gtreqless 0
+\Longleftrightarrow
+r \gtreqless \rho + \theta\cdot 0$$
+
+Consumption is growing when benefit from waiting $\rho$
+is greater than utility cost of waiting $\rho$.
+
+When $g \neq 0$, an additional term is needed to adjust
+for technology change. 
+
+---
+
+## Regions for $\dot{\hat{c}} > 0$ and $\dot{\hat{c}} < 0$ (cont'd)
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.003.jpeg")
+```
+
+---
+
+## $\hat{k}^*$ and $\hat{k}_G$
+
+Notice how I arranged the locus, $\hat{k} = \hat{k}^*$, and 
+the Golden Rule level, $\hat{k} = \hat{k}_G$. 
+
+By the assumption that $\rho - n > \max \{ 0, (1-\theta)g\}$,
+
+$$f'\left(\hat{k}^* \right) = \delta + \rho + \theta g  > 
+\delta + n + g = f'\left(\hat{k}_G\right)$$
+
+which implies
+
+$$\hat{k}^* < \hat{k}_G $$
+
+
+---
+
+## $\hat{k}^*$ and $\hat{k}_G$
+
+The intersection, $\left(\hat{k}^*, \hat{c}^*\right)$, of the loci for $\dot{\hat{k}} = 0$ and 
+$\dot{\hat{c}} = 0$ corresponds to the steady state 
+level of $\left(\hat{k}, \hat{c}\right)$. 
+
+In the steady state, the level of capital stock per 
+unit of effective labor is necessarily smaller than the 
+golden rule level. 
+
+$\hat{k}^*$ is sometimes called, modified golden rule.
+
+---
+
+## Phase Diagram
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.004.jpeg")
+```
+
+
+---
+
+## A trajectory from $\hat{k}(0) < k^*$: 1
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.005.jpeg")
+```
+
+---
+
+## A trajectory from $\hat{k}(0) < k^*$: 2
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.006.jpeg")
+```
+
+---
+
+## A trajectory from $\hat{k}(0) < k^*$: 3
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.007.jpeg")
+```
+
+
+---
+
+## Optimal trajectory
+
+The problem yet to be solved is the determination of 
+$\hat{c}(0)$. Given $\hat{k}(0)$, depending on the level 
+of candidates for $\hat{c}(0)$, the trajectories for the 
+differential equations exibit either of the following.
+
+1. $\hat{c}(t) \to 0$
+2. $\hat{k}(t) \to 0$
+3. $\hat{k}(t) \to \hat{k}^*$ and $\hat{c}(t) \to \hat{c}^*$
+
+---
+
+## Optimal trajectory (cont'd)
+
+1. $\hat{c}(t) \to 0$
+2. $\hat{k}(t) \to 0$
+
+The first trajectory doesn't solve the maximization problem 
+because by raising $\hat{c}(0)$ by a small amount we can 
+make $\hat{c}(t)$ larger for any $t$. 
+
+The second trajectory will eventually violate the feasibility 
+condition.
+
+---
+
+## Optimal trajectory (cont'd)
+
+3. $\hat{k}(t) \to \hat{k}^*$ and $\hat{c}(t) \to \hat{c}^*$
+
+The third trajectory (which lies in the middlle of 1 and 2) 
+converges to the steady state, 
+$\left(\hat{k}^*, \hat{c}^*\right)$, where 
+$\dot{\hat{k}} = 0$ and $\dot{\hat{c}} = 0$ hold simultaneously.
+
+This trajectory is the optimal path. 
+
+To obtain the convergence, the trajectory must start from 
+an appropriate $\hat{c}(0)$. The steady state 
+is said to be **saddle-point stable**.
+
+---
+
+## Optimal Consumption
+
+You have different (optimal) $\hat{c}(0)$'s for different $\hat{k}(0)$'s. 
+This mapping gives the optimal consumption function. (The Solow model's consumption 
+function was $\hat{c} = (1 - s) f\left( \hat{k} \right)$)
+
+
+```{r, out.width="400px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.008.jpeg")
+```
+
+
+---
+
+## Balanced Growth
+
+In the long-run, the Ramsey model converges to the 
+balanced growth path, in which all variables 
+grow at constat rates.
+
+Growth rates for 
+
+$$y, k, c, Y, K, C$$
+
+are identical to those in the Solow model.
+
+---
+
+## In the long run (comparative statics)
+
+What will happen to the steady state and the steady state growth rates,
+when one of the above parameters changes?
+
+Sample questions
+
+* Will the steady-state _growth rate_ of aggregate consumption, $C$, be increased, decreased,   or unchanged by an increase in $\delta$?
+* What policy measure might be effective when you (as a policy maker) try to increase 
+  the _level_ of output per capita, $y = Y / L$, in the steady state?
+
+
+---
+
+## On transition (comparative dynamics)
+
+As in the Solow model, the adjustment to the new steady state is not (necessarily) immediate.
+
+You can analyze the transition to the new steady state by the phase diagram.
+
+---
+
+## Example: Increase in $n$
+
+$\dot{\hat{c}} = 0$ locus is unchanged because the Euler equation does not have $n$.
+
+An increase in $n$ brings $\dot{\hat{k}} = 0$ locus down:
+
+$$\hat{c} = f\left(\hat{k}\right) - (\delta + g + n) \hat{k}$$
+
+The economy jumps down to the new steady state immediately.
+
+Since $\hat{c}$ is a variable that the consumer can choose, discontinuity is allowed. 
+
+
+---
+
+## Example: Increase in $n$
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.010.jpeg")
+```
+
+---
+
+## Example: Increase in $\rho$ 
+
+$\dot{\hat{k}} = 0$ locus is unchanged because the capital accumulation equation does not have $\rho$.
+
+An increase in $\rho$ shifts $\dot{\hat{c}} = 0$ locus to the left.
+
+
+Recall that 
+
+* $\hat{c}$ can be discontinuous
+* $\hat{k}$ must be continuous
+
+Describe the transition to the new steady state using the following diagram.
+
+
+---
+
+## Example: Increase in $\rho$
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.011.jpeg")
+```
+
+---
+
+## Comparative statics/dynamics
+
+You need to understand:
+
+* How steady states move;
+* How the economy adjusts to the new steady state.
+
+As we discussed earlier in this course, anticipation for future 
+is an important component of the Ramsey model.  
+
+You can analyze implications of such a policy change as
+
+* Permanent increase in $n$ due to an improvement of adoption policy
+  or immigration policy, which will be enforced at a known point 
+  in future.
+
+---
+
+## Example: Anticipated increase in $n$
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.012.jpeg")
+```
+
+---
+
+## Example: Anticipated increase in $n$
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.013.jpeg")
+```
+
+---
+
+## Example: Anticipated increase in $n$
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.014.jpeg")
+```
+
+---
+
+## Example: Anticipated increase in $n$
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.015.jpeg")
+```
+
+
+---
+
+## Anticipated increase in $n$
+
+```{r, out.width="800px", echo=FALSE}
+knitr::include_graphics("ramsey/ramsey.016.jpeg")
+```
+
+---
+
+## Why this path is optimal
+
+Mathematical proof is based on Kemp and Long (1977, Economic Record): 
+The costate variable $\lambda(t) = e^{- \rho t} u'(c(t))$ cannot jump 
+at the time of policy change.
+
+If there is anticipated discontinuous drop of $c(t)$ at $t = t_0$, 
+the agents anticipate a hike in $\lambda(t) = e^{- \rho t} u'(c(t))$.
+
+If the price of asset, $\lambda$, is known to jump in the future, 
+economic agents all try to buy the asset and the _present price_ would 
+rise.
+
+What you observe thus is an immediate drop of $c$.
+
+---
+
+## Summary
+
+When you solve a problem of comparative dynamics, keep in mind the following points: 
+
+* There is no discontinuity in $k$
+* There is no anticipated discontinuity in $u'(c)$ or $c$
+* The path must converge to the steady state at $t = \infty$.
+
+That is, in the Ramsey model, consumers change their behavior at the time of 
+arrival of new information. 
+
+
