@@ -1,0 +1,621 @@
+---
+title: "OLG Model"
+author: "Kenji Sato"
+date: 'Day 14'
+output:
+  xaringan::moon_reader:
+    mathjax: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    css: 
+      - "../asset/remark-css/style.css"
+    lib_dir: libs
+    nature:
+      countIncrementalSlides: no
+      highlightLines: yes
+      highlightStyle: github
+    pandoc_args: [
+      "--include-before-body", "../asset/mathjax-macro.md"
+    ]
+subtitle: Macroeconomics
+header-includes: <script src="https://use.fontawesome.com/b5f301ecca.js"></script>
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = 'center')
+source("../R/utils.R")
+library(tidyverse)
+```
+
+<div style="margin-top: -2.3em"></div>
+
+## Overlapping Generations
+
+We next study the overlapping generations model introduced by Diamond (1965). Unlike the Ramsey-type models, OLG models assume finitely lived agents. 
+
+New individuals are continually being born and old individuals are continually dying. There is turnover in the population.
+
+---
+
+## Overlapping Generations (cont'd)
+
+Applications of OLG models include 
+
+- pension system,
+- public finance, and 
+- environmental protection, etc,
+
+in which **confilict of interests between generations** may arise. 
+
+---
+
+## Example 1: Pension system
+
+Older generations never want to abolish pension system but younger generations might do. 
+
+Young generations doubt that the current pension system is sustainable and many expect not to receive what you pay. (In Japan, the fertility rate is slightly above 1.4)
+
+
+There is conflict of interests between generations. 
+In this case, OLG model is a natural choice. 
+
+---
+
+## Example 2: Public finance
+
+When issuing public bond for government investment, the government usually limits the bond duration up to the duration of depreciation of the invested capital. This is an incarnation of the benefit principle that the beneficiaries share the cost.
+
+If bond duration is longer, younger generation will have to repay the debt that they receive no benefit. **Carelessly issuing public bond may risk the future generations while immediate beneficiaries will receive large benefit because they will die before paying its full cost.** The analysis of such problems go well with OLG models. 
+
+---
+
+## Note 
+
+The OLG model presented in this course is one of the most simplest. OLG models in the wild have much more complex specifications. For instance, the well-known model of Conesa, Kitao and Krueger (2009, AER) has 81 generations, compared to 2 generations in our OLG model. 
+
+---
+
+
+## Demography
+
+Time is discrete. Individuals live for two periods. $L_{t}$ individuals are born in period $t$. The population growth rate is $n$: 
+$$L_{t}=(1+n)L_{t-1}$$
+
+
+|               | $t=0$ | $t=1$ | $t=2$ | $t=3$ | $\cdots$  |
+|:--------------|:-----:|:-----:|:-----:|:-----:|:---------:|
+| Generation -1 | Old   |       |       |       |           |
+| Generation 0  | Young | Old   |       |       |           |
+| Generation 1  |       | Young | Old   |       |           |
+| Generation 2  |       |       | Young | Old   |           |
+| Generation 3  |       |       |       | Young | Old       |
+
+---
+
+## Young generations
+
+Young individuals are endowed with 
+
+* no financial wealth
+* unit labor force
+
+They supply their full labor force irrespective of the wage rate (perfectly inelatic labor supply). They divide their labor income between consumption and saving. 
+
+Let $c_{t}^{Y}$ be the consumption of the representative consumer in generation 
+$t$ when they are young (per capita consumption).
+
+---
+
+## Old generations
+
+Young consumers get old in the next period. 
+
+Old consumers simply consume what you can buy with the savings and the interest they earned. 
+
+Let $c_{t+1}^{O}$  be the consumption of the representative consumer in generation 
+$t$ when they are old.
+
+---
+
+## Households' utility
+
+The utility function of generation $t$ is given by 
+
+$$u_{t}=\frac{\left(c_{t}^{Y}\right)^{1-\theta}}{1-\theta}+\frac{1}{1+\rho}
+  \frac{\left(c_{t+1}^{O}\right)^{1-\theta}}{1-\theta},\quad\theta>0,\ \rho>-1$$
+
+They are subject to the following budget constraints.
+
+$$\begin{aligned}
+c_{t}^{Y}+s_{t}	&= w_{t} &(\textrm{Young})\\
+c_{t+1}^{O} &= (1+r_{t+1})s_{t} &(\textrm{Old})
+\end{aligned}$$
+
+
+$r_{t+1}$ is the interest rate between period $t$ and $t+1$. The saving contract is made in period $t$ and the interest is paid in period $t+1$. 
+
+
+---
+
+## Households' optimization
+
+$$\begin{aligned}
+&\max_{c_{t}^{Y},c_{t+1}^{O},s_{t}}
+  \frac{\left(c_{t}^{Y}\right)^{1-\theta}}{1-\theta}
+  +
+  \frac{1}{1+\rho}\frac{\left(c_{t+1}^{O}\right)^{1-\theta}}{1-\theta}\\
+&\text{subject to }\\
+&\qquad c_{t}^{Y}+ \frac{1}{1+r_{t+1}} c_{t+1}^{O} =w_{t}.
+\end{aligned}$$
+
+
+**Exercise:  Derive the first-order condition using MRS = relative price.**
+
+---
+
+## First-order condition
+
+$$\frac{c_{t+1}^{O}}{c_{t}^{Y}}=\left(\frac{1+r_{t+1}}{1+\rho}\right)^{1/\theta}$$
+
+This is analogous to the Euler equation in the Ramsey model.
+
+
+---
+
+## Saving rate function
+
+Let a function $s(\cdot)$ be such that 
+
+$$s_{t}=s(r_{t+1})w_{t}$$ 
+
+$s(\cdot)$ represents the fraction of income allocated to saving. 
+
+$$c_{t}^{Y}   = \left[1-s(r_{t+1})\right]w_{t},\quad \text{and} \quad
+c_{t+1}^{O} = (1+r_{t+1})s(r_{t+1})w_{t}$$
+
+imply 
+
+$$\frac{(1+r_{t+1})s(r_{t+1})}{1-s(r_{t+1})}
+=
+\left(\frac{1+r_{t+1}}{1+\rho}\right)^{1/\theta}$$
+
+---
+
+## Saving rate function (cont'd)
+
+We get 
+
+$$s(r_{t+1})
+=
+\frac{(1+r_{t+1})^{\frac{1-\theta}{\theta}}}
+     {(1+\rho)^{\frac{1}{\theta}}+(1+r_{t+1})^{\frac{1-\theta}{\theta}}}$$
+
+Observe that 
+
+$$\begin{aligned}
+\frac{ds}{dr}>0&\Leftrightarrow\theta<1\\
+\frac{ds}{dr}<0&\Leftrightarrow\theta>1.
+\end{aligned}$$
+
+---
+
+## Income and substitution effects
+
+Recall a microeconomics result that response to a change in relative price is decomposed into income effect and substitution effect. 
+
+Change in $r$ has both 
+
+* income effect = when $r$ becomes larger, increase in financial income 
+  increase consumption both in their youth and old age; and 
+* substitution effect = change in relative price makes consumption in 
+  old more attractive.
+  
+---
+
+## Income and substitution effects (cont'd)
+
+$$\begin{aligned}
+\frac{ds}{dr}>0&\Leftrightarrow\theta<1\\
+\frac{ds}{dr}<0&\Leftrightarrow\theta>1.
+\end{aligned}$$
+
+When $\theta<1$, they are willing to defer consumption. They take advantage of increased interest to get more consumption when old, that is, the substitution effect dominates. $s(\cdot)$ is increasing function of $r$. 
+
+
+---
+
+## Firm
+
+Firms have access to technology $Y=F(K,AL)$. They rent capital from households and employ labor force. Technology $A$ is exogenously given. 
+
+$$A_{t+1}=(1+g)A_{t}$$
+
+As always, we consider the intensive form: 
+
+$$
+\hat{y}=f(\hat{k})
+$$
+
+where $\hat{y}=Y/AL$ and $\hat{k}=K/AL$.
+
+---
+
+## Factor markets
+
+The factor markets are assumed to be competitive. 
+
+We get (under no depreciation $\delta = 0$) that 
+
+$$r_{t+1}	=f'(\hat{k}_{t+1})$$
+
+$$w_{t}	=A_{t}\left[f(\hat{k}_{t})-\hat{k}_{t}f'(\hat{k}_{t})\right],$$
+or 
+
+$$\hat{w}_{t}=w_{t}/A_{t}=f(\hat{k}_{t})-\hat{k}_{t}f'(\hat{k}_{t}).$$
+
+---
+
+## Capital market
+
+Period-$0$ capital $K_{0}$ are owned by all old individuals $L_{-1}$ of generation $-1$. 
+
+Capital stock in period $t+1$ is the amount saved by the young in generation $t$. Thus, 
+$$K_{t+1}=s_{t}L_{t} \quad
+\textrm{or}
+\quad K_{t+1}=s(r_{t+1})\hat{w}_{t}A_{t}L_{t}$$
+
+
+We get 
+
+$$\hat{k}_{t+1} =
+\frac{s(r_{t+1})\hat{w}_{t}}{(1+g)(1+n)} =
+\frac{s\left(f'(\hat{k}_{t+1})\right)\left[f(\hat{k}_{t})-\hat{k}_{t}f'(\hat{k}_{t})\right]}{(1+g)(1+n)}.$$
+
+---
+
+## Product market
+
+Does the product market clear? To check this, prove
+
+$$Y_{t}+K_{t}=\left(c_{t}^{Y}L_{t}+s_{t}L_{t}\right)+c_{t}^{O}L_{t-1}.$$
+
+We need $K_{t}$ because the old guys dissave (and eat) all the capital they had saved when they were young. $c_{t}^{O}$ contains this term. 
+
+---
+
+## Dynamics
+
+The dynamics of the economy is governed by the following system.
+
+$$\hat{k}_{t+1}
+=
+\frac{s\left(f'(\hat{k}_{t+1})\right)
+      \left[f(\hat{k}_{t})-\hat{k}_{t}f'(\hat{k}_{t})\right]}
+     {(1+g)(1+n)}$$
+
+Notice that both right-hand and left-hand sides contain $k_{t+1}$. 
+
+This system is said to be an implicit system. $k_{t+1}$ may not be a function of $k_{t}$ in which case, there is multiple possibility of time path. 
+
+
+---
+
+## Dynamics (cont'd)
+
+To obtain a clear result, we assume that 
+
+$$f(k)=k^{\alpha},\quad0<\alpha<1$$
+
+and the logarithmic utility function: i.e., $\theta=1$.
+
+Prove that the dynamics is characterized by 
+
+$$\hat{k}_{t+1}=\frac{(1-\alpha)}{(1+g)(1+n)(2+\rho)}\hat{k}_{t}^{\alpha}$$
+
+---
+
+## Dynamics of the OLG model
+
+The dynamics of the capital per unit of effective labor $\hat k_t$ obeys
+
+$$\begin{aligned}
+\hat{k}_{t+1}
+=
+\frac{s\left(f'(\hat{k}_{t+1})\right)
+      \left[f(\hat{k}_{t})-\hat{k}_{t}f'(\hat{k}_{t})\right]}
+     {(1+g)(1+n)},
+\end{aligned}$$
+
+This is an implicit system (the left- and right-hand sides both contain $\hat{k}_{t+1}$). 
+
+$k_{t+1}$ may not be a function of $k_{t}$, in which case there is multiple possibilities for the time path.
+
+---
+
+## Cobb-Douglas Production and Log Utility
+
+To obtain a clear result, we assume that 
+
+$$\begin{aligned}
+f(k)=k^{\alpha},\quad0<\alpha<1
+\end{aligned}$$
+
+and the log instantaneous utility function: i.e., $\theta=1$.
+
+The dynamics is characterized by 
+
+$$\begin{aligned}
+\hat{k}_{t+1}=\frac{(1-\alpha)}{(1+g)(1+n)(2+\rho)}\hat{k}_{t}^{\alpha}
+\end{aligned}$$
+
+This is analogous to the Solow model.
+
+---
+
+## Cobb-Douglas Production and Log Utility (Stability)
+
+It can be shown that for any $\hat k_0 > 0$  
+
+$$\begin{aligned}
+\hat k_t \to \hat{k}^{*}=\left[\frac{1-\alpha}{(1+n)(1+g)(2+\rho)}\right]^{\frac{1}{1-\alpha}}
+\end{aligned}$$
+
+as $t \to \infty$.
+
+The prediction of the Solow model is preserved. For instance, per-capita capital
+
+$$\begin{aligned}
+  k_t = A_t \hat k_t
+\end{aligned}$$
+
+grows at the rate of $g$ in the long run. 
+
+---
+
+## Dynamic Inefficiency
+
+OLG models may have **dynamic inefficiency** in that at least one generation can increase utility without no generation else reducing utility. 
+
+Let's continue to assume that the production function is C-D and utility is log. 
+The steady state for capital per unit of effective labor satisfies
+
+$$\begin{aligned}
+  \hat{k}^{*}=\left[\frac{1-\alpha}{(1+n)(1+g)(2+\rho)}\right]^{\frac{1}{1-\alpha}}
+\end{aligned}$$
+
+---
+
+## Dynamic Inefficiency (cont'd)
+
+$$\begin{aligned}
+f'\left(\hat{k}^{*}\right)
+&=
+\alpha\left(\left[
+    \frac{1-\alpha}{(1+n)(1+g)(2+\rho)}
+  \right]^{\frac{1}{1-\alpha}}\right)^{\alpha-1}\\
+&=
+\frac{\alpha(1+n)(1+g)(2+\rho)}{1-\alpha}.
+\end{aligned}$$
+
+The golden rule capital stock $\hat k_G$ satisfies (under $\delta = 0$):
+
+
+$$\begin{aligned}
+  f'(\hat{k}_{G}) = n + g
+\end{aligned}$$
+
+
+
+---
+
+## Dynamic Inefficiency (cont'd)
+
+The golden rule capital stock $\hat k_G$ satisfies (under $\delta = 0$):
+
+
+$$\begin{aligned}
+  f'(\hat{k}_{G}) = n + g
+\end{aligned}$$
+
+Thus,
+
+$$\begin{aligned}
+  \frac{\alpha(1+n)(1+g)(2+\rho)}{1-\alpha} < n + g
+  \Longleftrightarrow
+  \hat{k}^* > \hat k_G
+\end{aligned}$$
+
+
+If $\alpha$ is sufficiently small, the above inequalities hold and it gives rise to
+dynamic inefficiency. 
+
+In OLG models, the fact that there is no coordination between generations may result in too much saving.
+
+
+
+---
+
+## Reallocation
+
+Let's suppose $\hat{k}^* > \hat k_G$ and that the economy is on the BGP.
+
+If some social planner forces 
+
+- young people in period $t_{0}$ to consume more and save less by some 
+  amount $\Delta > 0$ by which the economy moves to $\hat{k}_{G}$, 
+- people in subsequent periods consume the golden rule level
+
+---
+
+## Reallocation (cont'd)
+
+Consumption per effective worker in period $t_{0}$ satisfies:
+
+$$\begin{aligned}
+  f(\hat{k}^{*})+(\hat{k}^{*}-\hat{k}_{G})-(g+n)\hat{k}_{G} 
+  &>
+  f(\hat{k}_{G})-(g+n) \hat{k}_{G}\\
+  &>
+  f(\hat{k}^{*})-(g+n)\hat{k}^{*}.
+\end{aligned}$$
+
+All generations potentially become better off by this reallocation. The original 
+saving rate was too high. 
+
+---
+
+## Reallocation (cont'd)
+
+#### consumption in period $t_0$
+
+$$\begin{aligned}
+  f(\hat{k}^{*})+(\hat{k}^{*}-\hat{k}_{G})-(g+n)\hat{k}_{G}
+\end{aligned}$$
+
+#### consumption in period $t > t_0$
+
+$$\begin{aligned}
+f(\hat{k}_{G})-(g+n) \hat{k}_{G}
+\end{aligned}$$
+
+#### consumption without the reallocation
+
+$$\begin{aligned}
+f(\hat{k}^{*})-(g+n)\hat{k}^{*}
+\end{aligned}$$
+
+
+
+
+---
+
+## Dynamic efficiency of the Ramsey model
+
+In the Ramsey model, it always holds that 
+
+$$\begin{aligned}
+\hat k^* < \hat k_G
+\end{aligned}$$
+
+So, there is no dynamic inefficiency in the Ramsey model.
+
+
+
+---
+
+## Multiple equilibrium
+
+Let's go back to the implicit equation. By rearranging terms, we have
+
+$$\begin{aligned}
+f(\hat{k}_{t})-\hat{k}_{t}f'(\hat{k}_{t})
+=
+\frac{(1+g)(1+n)\hat k_{t+1}}{s\left( f'(\hat k_{t+1}) \right)}
+\end{aligned}$$
+
+Define $w(k) = f(k) - kf'(k)$. Since 
+
+- $w(k)$ is increasing in $k$ 
+- $w(0) = 0$, and
+- the right-hand side is positive
+
+---
+
+## Inverse dynamics
+
+Given $\hat k_{t+1}$, we can solve for a unique $\hat k_t$ that satisfies
+the above equation. We have the **inverse dynamics** ($\hat k_{t+1} \mapsto \hat k_t$) 
+
+This dynamic system possesses many interesting properties.
+
+To see examples, we use CES production function:
+
+$$f(k) = A (\alpha k^\gamma + 1-\alpha)^{1 / \gamma} $$
+
+
+---
+
+class: small
+
+## Code
+
+```{r, echo=TRUE}
+OLG = function(theta, rho, g, n, alpha, gamma, A) {
+  f = function(k) A * (alpha * k ^ gamma + 1 - alpha) ^ (1 / gamma)
+  df = function(k) A * alpha * (alpha + (1 - alpha) * k ^ (-gamma)) ^
+                                              ((1 - gamma) / gamma)
+  w = function(k) f(k) - k * df(k)
+  w_inv = function(y) {
+    sol = nleqslv::nleqslv(100, function(x) w(x) - y)
+    if (sol$termcd == 1) return(sol$x) else return(NA)
+  }
+  s = function(r){
+    sigma = (1 - theta) / theta
+    return((1 + r) ^ sigma) / ((1 + rho) ^ (1 / theta) + (1 + r) ^ sigma)
+  }
+  w2 = function(k) (1 + g) * (1 + n) * k / s(df(k))
+  return(list(f=f, df=df, w=w, w_inv=w_inv, w2=w2))
+}
+
+```
+
+---
+
+## Typical Case
+
+```{r, echo=TRUE, warning=FALSE, echo=FALSE}
+model = OLG(theta=0.8, rho=0.4, g=0.2, n=0.2, 
+            alpha=0.33, gamma=0.1, A=7)
+
+k1 = seq(0.0, 10, length.out=100)
+k0 = lapply(model$w2(k1), model$w_inv)
+k0 = unlist(k0)
+qplot(k0, k1, geom='line') + geom_line(data=tibble(x=k0, y=k0), aes(x,y)) +
+  xlim(0.0, 10) + ylim(0.0, 10)
+```
+
+---
+
+## Multiple Equilibrium (Poverty Trap)
+
+```{r, echo=TRUE, warning=FALSE, echo=FALSE}
+model = OLG(theta=8, rho=0.4, g=0.3, n=0.2, 
+            alpha=0.33, gamma=-0.7, A=7)
+
+k1 = seq(0.0, 7, length.out=100)
+k0 = lapply(model$w2(k1), model$w_inv)
+k0 = unlist(k0)
+qplot(k0, k1, geom='line') + geom_line(data=tibble(x=k0, y=k0), aes(x,y)) +
+  xlim(0.0, 5) + ylim(0.0, 5)
+```
+
+
+---
+
+## Multiple Steady States (Self-fulfilling prophecy)
+
+```{r, echo=TRUE, warning=FALSE, echo=FALSE}
+model = OLG(theta=8, rho=0.4, g=0.3, n=0.2, 
+            alpha=0.33, gamma=-2.9, A=7)
+
+k1 = seq(0.00, 6, length.out=100)
+k0 = lapply(model$w2(k1), model$w_inv)
+k0 = unlist(k0)
+ggplot(data=tibble(k0=k0, k1=k1)) + geom_path(aes(x=k0, y=k1)) + 
+  geom_line(aes(k0,k0)) + xlim(0.0, 6) + ylim(0.0, 6)
+```
+
+
+---
+
+## Multiple Steady States (Self-fulfilling prophecy)
+
+Comments on the previous figure. 
+
+A path that starts from somewhere very close to the middle steady state (which is unstable) is not entirely determined by the initial condition. (Indeterminacy)
+
+Because the agents have three possible $\hat k_{t+1}$. The path they choose is affected by non-fundamental factors (called **sunspots**).
+
+If they _believe_ the economy experiences boom, they choose the higer $\hat k_{t+1}$ and 
+the economy converges to the higher steady state. Their belief has the power to make it true. 
+
+
